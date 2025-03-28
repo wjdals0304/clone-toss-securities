@@ -2,4 +2,10 @@
 :root {
     --adaptive-background: #17171c;
     --wts-body-background-color: #17171c;
+    --adaptiveGreyOpacity100: rgba(217, 217, 255, 0.11);
+    --tds-wts-font-weight: bold;
+    --tds-wts-font-size: 17px;
+    --tds-wts-line-height: 1.45;
+    --tds-wts-foreground-color: var(--adaptiveGrey800);
+    --adaptiveGrey800: #e4e4e5;
 }

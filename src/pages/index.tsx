@@ -1,18 +1,18 @@
-import Header from "@/components/Header";
-import styled from "styled-components";
-
+import styled from 'styled-components';
+import HomeMain from './HomeMain';
+import HomeAside from './HomeAside';
 export default function Home() {
   return (
     <HomeContainer>
-      <Header />
+      <HomeMain />
+      <HomeAside />
     </HomeContainer>
-  )
+  );
 }
 
 const HomeContainer = styled.div`
-  display: flex;  
+  display: flex;
   z-index: 0;
   position: relative;
   isolation: isolate;
 `;
-

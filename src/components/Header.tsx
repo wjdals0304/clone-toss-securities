@@ -1,6 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
-import styled from "styled-components";
+import Image from 'next/image';
+import Link from 'next/link';
+import styled from 'styled-components';
+
+function Header() {
+  const logoURL =
+    'https://static.toss.im/png-icons/securities/logo_securities_mono_white_korean_300.png';
+
+  return (
+    <HeaderContainer>
+      <HeaderNav>
+        <LogoLink href="/">
+          <LogoImage src={logoURL} alt="logo" width={100} height={20} />
+        </LogoLink>
+      </HeaderNav>
+    </HeaderContainer>
+  );
+}
 
 const HeaderContainer = styled.header`
   background-color: var(--adaptive-background);
@@ -26,23 +41,9 @@ const LogoImage = styled(Image)`
 const HeaderNav = styled.nav`
   align-items: center;
   display: flex;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   padding: 0 20px;
 `;
-
-function Header() {
-    const logoURL = "https://static.toss.im/png-icons/securities/logo_securities_mono_white_korean_300.png"
-
-  return (
-    <HeaderContainer>
-      <HeaderNav>
-        <LogoLink href="/">
-          <LogoImage src={logoURL} alt="logo" width={100} height={20} />
-        </LogoLink>
-      </HeaderNav>
-    </HeaderContainer>
-  );
-}
 
 export default Header;
