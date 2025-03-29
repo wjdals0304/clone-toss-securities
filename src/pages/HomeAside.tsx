@@ -18,7 +18,6 @@ const HomeAsideContainer = styled.div`
   height: 100dvh;
   overflow: clip;
   z-index: 100001;
-
   flex-direction: column;
   padding: 16px;
   width: 314px;
