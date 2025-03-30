@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import LiveChartSection from './LiveChart/LiveChartSection';
 import HomeTab from './HomeTab';
 import CommunitySection from './Community/CommunitySection';
+import Category from './Category/Category';
+
 export default function HomeMain() {
   return (
     <HomeMainContainer>
@@ -12,6 +14,8 @@ export default function HomeMain() {
         <HomeMainDiv>
           <LiveChartSection />
           <CommunitySection />
+          <div style={{ height: '80px' }} />
+          <Category />
         </HomeMainDiv>
       </HomeMainTag>
     </HomeMainContainer>
