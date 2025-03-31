@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
-export default function StockPost() {
-  const postList = [
-    {
-      address: '급등주린님',
-      time: '3시간 전',
-      description:
-        '오늘 오후 1시 쯤 주식 시장이 오픈되었는데, 주식 시장이 오픈되었습니다.',
-    },
-    {
-      address: '급등주린님222',
-      time: '3시간 전',
-      description:
-        '오늘 오후 22시 쯤 주식 시장이 오픈되었는데, 주식 시장이 오픈되었습니다.',
-    },
-  ];
+const postList = [
+  {
+    address: '급등주린님',
+    time: '3시간 전',
+    description:
+      '오늘 오후 1시 쯤 주식 시장이 오픈되었는데, 주식 시장이 오픈되었습니다.',
+  },
+  {
+    address: '급등주린님222',
+    time: '3시간 전',
+    description:
+      '오늘 오후 22시 쯤 주식 시장이 오픈되었는데, 주식 시장이 오픈되었습니다.',
+  },
+];
 
+export default function StockPost() {
   return (
     <StockPostContainer>
       <PostContentContainer>
@@ -23,12 +23,12 @@ export default function StockPost() {
           <PostSection key={post.address}>
             <PostSectionDiv>
               <PostAddress>
-                <PostLabel>
+                <label>
                   <PostLabelSpan>급등주린님</PostLabelSpan>
                   <PostLabelTime>
                     <PostLabelSpan>3시간 전</PostLabelSpan>
                   </PostLabelTime>
-                </PostLabel>
+                </label>
               </PostAddress>
               <PostDescriptionDiv>
                 <PostDescriptionSpan>
@@ -92,8 +92,6 @@ const PostAddress = styled.address`
   cursor: pointer;
   margin: 4px 0 4px 0;
 `;
-
-const PostLabel = styled.label``;
 
 const PostLabelSpan = styled.span`
   margin: 0;
