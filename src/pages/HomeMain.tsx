@@ -28,7 +28,7 @@ const HomeMainContainer = styled.div`
 
 const HomeMainTag = styled.main`
   width: 100%;
-  flex: 1 1;
+  flex: 1;
   isolation: isolate;
 `;
 

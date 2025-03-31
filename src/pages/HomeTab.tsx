@@ -24,8 +24,7 @@ const HomeTabContainer = styled.div`
   justify-content: center;
   isolation: isolate;
   padding: 4px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 4px 0;
 `;
 
 const HomeTabItem = styled.button`

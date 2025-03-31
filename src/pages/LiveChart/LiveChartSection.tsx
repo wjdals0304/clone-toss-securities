@@ -44,10 +44,10 @@ const LiveChartHeaderSection = styled.section`
 `;
 
 const LiveChartHeaderTitle = styled.span`
-  font-size: var(--tds-wts-font-size);
-  font-weight: var(--tds-wts-font-weight);
-  line-height: var(--tds-wts-line-height);
-  color: var(--tds-wts-foreground-color);
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.45;
+  color: #e4e4e5;
 `;
 
 const LiveChartSectionCategoryDiv = styled.div`
@@ -60,7 +60,7 @@ const LiveChartTabListDiv = styled.div`
   display: flex;
   max-width: 100%;
   overflow: visible;
-  height: var(--tw-336bzi0);
+  height: 40px;
   border-bottom: 1px solid rgba(222, 222, 222, 0.19);
   gap: 20px;
 `;
@@ -80,5 +80,4 @@ const LiveChartTabListSpan = styled.span`
   color: #c3c3c3;
   line-height: 1.45;
   font-size: 15px;
-  line-height: 1.45;
 `;

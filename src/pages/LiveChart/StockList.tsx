@@ -1,35 +1,35 @@
 import styled from 'styled-components';
 
-export default function StockList() {
-  const stockList = [
-    {
-      name: '테슬라',
-      price: 100000,
-      change: -7.2,
-      volume: 8.9,
-    },
-    {
-      name: '엔비디아',
-      price: 100000,
-      change: -7.2,
-      volume: 8.9,
-    },
-    {
-      name: '애플',
-      price: 100000,
-      change: -7.2,
-      volume: 8.9,
-    },
-  ];
+const stockList = [
+  {
+    name: '테슬라',
+    price: 100000,
+    change: -7.2,
+    volume: 8.9,
+  },
+  {
+    name: '엔비디아',
+    price: 100000,
+    change: -7.2,
+    volume: 8.9,
+  },
+  {
+    name: '애플',
+    price: 100000,
+    change: -7.2,
+    volume: 8.9,
+  },
+];
 
+export default function StockList() {
   return (
     <StockListContainer>
       <StockTable>
         <colgroup>
-          <col style={{ width: '40%' }} />
-          <col style={{ width: '20%' }} />
-          <col style={{ width: '20%' }} />
-          <col style={{ width: '20%' }} />
+          <StyledCol width="40%" />
+          <StyledCol width="20%" />
+          <StyledCol width="20%" />
+          <StyledCol width="20%" />
         </colgroup>
         <StockTHead>
           <StockTr>
@@ -59,6 +59,10 @@ export default function StockList() {
     </StockListContainer>
   );
 }
+
+const StyledCol = styled.col`
+  width: ${props => props.width};
+`;
 
 const StockListContainer = styled.div`
   overflow: hidden;
@@ -90,18 +94,15 @@ const StockTr = styled.tr`
 `;
 
 const StockTd = styled.td`
-  padding: 8px 16px;
   text-align: right;
   color: #e4e4e5;
 
   &:first-child {
     text-align: left;
-    padding: 0 12px;
   }
 `;
 
 const StockTh = styled.th`
-  padding: 8px 16px;
   color: #9e9ea4;
   text-align: right;
   font-weight: normal;
@@ -117,7 +118,6 @@ const StockTh = styled.th`
 const StockNameContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 4px;
 `;
 
 const StockHeartButton = styled.button`
