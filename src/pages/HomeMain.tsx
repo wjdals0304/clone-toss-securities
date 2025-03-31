@@ -4,7 +4,7 @@ import LiveChartSection from './LiveChart/LiveChartSection';
 import HomeTab from './HomeTab';
 import CommunitySection from './Community/CommunitySection';
 import Category from './Category/Category';
-
+import EtfSection from './Etf/EtfSection';
 export default function HomeMain() {
   return (
     <HomeMainContainer>
@@ -14,13 +14,19 @@ export default function HomeMain() {
         <HomeMainDiv>
           <LiveChartSection />
           <CommunitySection />
-          <div style={{ height: '80px' }} />
+          <HeightDiv />
           <Category />
+          <HeightDiv />
+          <EtfSection />
         </HomeMainDiv>
       </HomeMainTag>
     </HomeMainContainer>
   );
 }
+
+const HeightDiv = styled.div`
+  height: 80px;
+`;
 
 const HomeMainContainer = styled.div`
   display: flex;
