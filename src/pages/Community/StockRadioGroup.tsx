@@ -32,6 +32,7 @@ export default function ExportStockRadioGroup() {
             id={stock.name}
             name="home-hot-communities"
             defaultChecked
+            isChecked={stock.rank === 1}
           />
           <StockLabel htmlFor={stock.name}>
             <StockItemContent>
