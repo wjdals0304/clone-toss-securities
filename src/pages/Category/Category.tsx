@@ -75,7 +75,7 @@ export default function Category() {
     },
   ];
   return (
-    <CategoryContainer>
+    <div>
       <CategoryTitleContainer>
         <CategoryTitle>지금 뜨는 카테고리</CategoryTitle>
       </CategoryTitleContainer>
@@ -83,11 +83,9 @@ export default function Category() {
         <CategorySection title="국내" items={domesticItem} />
         <CategorySection title="해외" items={overseasItem} />
       </CategoryContentContainer>
-    </CategoryContainer>
+    </div>
   );
 }
-
-const CategoryContainer = styled.div``;
 
 const CategoryTitleContainer = styled.div`
   padding: 8px;
