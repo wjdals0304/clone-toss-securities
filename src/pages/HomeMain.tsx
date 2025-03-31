@@ -15,5 +15,5 @@ const HomeMainContainer = styled.div`
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background-color: var(--adaptive-background);
+  background-color: #17171c;
 `;

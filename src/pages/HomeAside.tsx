@@ -23,7 +23,7 @@ const HomeAsideContainer = styled.div`
   padding: 16px;
   width: 314px;
   background-color: #101013;
-  border-left: 1px solid var(--adaptiveGreyOpacity100);
+  border-left: 1px solid rgba(217, 217, 255, 0.11);
 `;
 
 const HomeAsideHeader = styled.div`
@@ -34,8 +34,8 @@ const HomeAsideHeader = styled.div`
 `;
 
 const HomeAsideHeaderTitle = styled.span`
-  font-weight: var(--tds-wts-font-weight);
-  font-size: var(--tds-wts-font-size);
-  color: var(--tds-wts-foreground-color);
-  line-height: var(--tds-wts-line-height);
+  font-weight: bold;
+  font-size: 17px;
+  color: #e4e4e5;
+  line-height: 1.45;
 `;

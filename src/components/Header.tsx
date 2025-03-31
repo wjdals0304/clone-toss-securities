@@ -18,7 +18,7 @@ function Header() {
 }
 
 const HeaderContainer = styled.header`
-  background-color: var(--adaptive-background);
+  background-color: #17171c;
   height: 20px;
   width: auto;
   top: 0;
@@ -32,11 +32,7 @@ const LogoLink = styled(Link)`
   text-decoration: none;
 `;
 
-const LogoImage = styled(Image)`
-  height: 20px;
-  width: auto;
-  color: transparent;
-`;
+const LogoImage = styled(Image)``;
 
 const HeaderNav = styled.nav`
   align-items: center;
