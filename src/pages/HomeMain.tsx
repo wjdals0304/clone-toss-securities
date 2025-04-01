@@ -78,7 +78,7 @@ const HomeLiveChartDiv = styled.div`
 
 const HomeSeparatorDiv = styled.div`
   margin: 0 24px;
-  min-width: 1px;
+  width: 1px;
   background: linear-gradient(
     180deg,
     #17171c 0,
