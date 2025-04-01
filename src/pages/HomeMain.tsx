@@ -15,16 +15,22 @@ export default function HomeMain() {
       <HomeMainTag>
         <HomeTab />
         <HomeMainDiv>
-          <LiveChartSection />
-          <CommunitySection />
-          <HeightDiv />
-          <Category />
-          <HeightDiv />
-          <EtfSection />
-          <HeightDiv />
-          <TransactionStatusSection />
-          <HeightDiv />
-          <SelectStockSection />
+          <HomeContentWrapper>
+            <HomeLiveChartDiv>
+              <LiveChartSection />
+              <CommunitySection />
+              <HeightDiv />
+              <Category />
+              <HeightDiv />
+              <EtfSection />
+              <HeightDiv />
+              <TransactionStatusSection />
+              <HeightDiv />
+              <SelectStockSection />
+            </HomeLiveChartDiv>
+            <HomeSeparatorDiv />
+            <HomeAsideDiv></HomeAsideDiv>
+          </HomeContentWrapper>
         </HomeMainDiv>
       </HomeMainTag>
     </HomeMainContainer>
@@ -47,7 +53,6 @@ const HomeMainContainer = styled.div`
 const HomeMainTag = styled.main`
   width: 100%;
   flex: 1;
-  isolation: isolate;
 `;
 
 const HomeMainDiv = styled.div`
@@ -56,4 +61,36 @@ const HomeMainDiv = styled.div`
   width: 100%;
   min-width: 1100px;
   max-width: 1280px;
+`;
+
+const HomeContentWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin: 16px auto 0;
+`;
+
+const HomeLiveChartDiv = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+`;
+
+const HomeSeparatorDiv = styled.div`
+  margin: 0 24px;
+  min-width: 1px;
+  background: linear-gradient(
+    180deg,
+    #17171c 0,
+    #3c3c47 1.4%,
+    #3c3c47 84.8%,
+    #17171c 100%
+  );
+`;
+
+const HomeAsideDiv = styled.div`
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
