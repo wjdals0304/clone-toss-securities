@@ -18,7 +18,7 @@ const NewsItemList = [
 export default function NewsSection() {
   return (
     <div className="min-h-[340px]">
-      <div className="flex gap-[1rem] mb-[0.5rem]">
+      <div className="flex gap-4 mb-2">
         <button>
           <span className="text-[15px] font-normal text-[#c3c3c3]">
             주요 뉴스
@@ -30,7 +30,7 @@ export default function NewsSection() {
           </span>
         </button>
       </div>
-      <div className="flex flex-col gap-[1rem]">
+      <div className="flex flex-col gap-4">
         {NewsItemList.map(item => (
           <div className="flex justify-between items-center p-[8px 0]">
             <div className="flex flex-col">
