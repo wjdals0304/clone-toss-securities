@@ -102,6 +102,7 @@ button {
     'Helvetica Neue',
     sans-serif;
   box-sizing: border-box;
+  line-height: 1.45;
 }
 
 button {
