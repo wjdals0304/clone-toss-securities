@@ -5,6 +5,8 @@ import HomeTab from './HomeTab';
 import CommunitySection from './Community/CommunitySection';
 import Category from './Category/Category';
 import EtfSection from './Etf/EtfSection';
+import TransactionStatusSection from './TransactionStatus/TransactionStatusSection';
+
 export default function HomeMain() {
   return (
     <HomeMainContainer>
@@ -18,6 +20,8 @@ export default function HomeMain() {
           <Category />
           <HeightDiv />
           <EtfSection />
+          <HeightDiv />
+          <TransactionStatusSection />
         </HomeMainDiv>
       </HomeMainTag>
     </HomeMainContainer>
