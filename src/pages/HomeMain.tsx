@@ -2,7 +2,7 @@ import Header from '@/components/Header';
 import styled from 'styled-components';
 import LiveChartSection from './LiveChart/LiveChartSection';
 import HomeTab from './HomeTab';
-
+import CommunitySection from './Community/CommunitySection';
 export default function HomeMain() {
   return (
     <HomeMainContainer>
@@ -11,6 +11,7 @@ export default function HomeMain() {
         <HomeTab />
         <HomeMainDiv>
           <LiveChartSection />
+          <CommunitySection />
         </HomeMainDiv>
       </HomeMainTag>
     </HomeMainContainer>
