@@ -8,6 +8,7 @@ import EtfSection from './Etf/EtfSection';
 import TransactionStatusSection from './TransactionStatus/TransactionStatusSection';
 import SelectStockSection from './SelectStock/SelectStockSection';
 import IndexSection from './Index/IndexSection';
+import NewsSection from './NewsSection/NewsSection';
 
 export default function HomeMain() {
   return (
@@ -32,6 +33,8 @@ export default function HomeMain() {
             <HomeSeparatorDiv />
             <HomeAsideDiv>
               <IndexSection />
+              <HomeAsideHeightDiv />
+              <NewsSection />
             </HomeAsideDiv>
           </HomeContentWrapper>
         </HomeMainDiv>
@@ -96,4 +99,8 @@ const HomeAsideDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+const HomeAsideHeightDiv = styled.div`
+  height: 40px;
 `;
