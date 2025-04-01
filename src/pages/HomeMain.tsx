@@ -7,6 +7,7 @@ import Category from './Category/Category';
 import EtfSection from './Etf/EtfSection';
 import TransactionStatusSection from './TransactionStatus/TransactionStatusSection';
 import SelectStockSection from './SelectStock/SelectStockSection';
+import IndexSection from './Index/IndexSection';
 
 export default function HomeMain() {
   return (
@@ -29,7 +30,9 @@ export default function HomeMain() {
               <SelectStockSection />
             </HomeLiveChartDiv>
             <HomeSeparatorDiv />
-            <HomeAsideDiv></HomeAsideDiv>
+            <HomeAsideDiv>
+              <IndexSection />
+            </HomeAsideDiv>
           </HomeContentWrapper>
         </HomeMainDiv>
       </HomeMainTag>
