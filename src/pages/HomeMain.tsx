@@ -6,6 +6,7 @@ import CommunitySection from './Community/CommunitySection';
 import Category from './Category/Category';
 import EtfSection from './Etf/EtfSection';
 import TransactionStatusSection from './TransactionStatus/TransactionStatusSection';
+import SelectStockSection from './SelectStock/SelectStockSection';
 
 export default function HomeMain() {
   return (
@@ -22,6 +23,8 @@ export default function HomeMain() {
           <EtfSection />
           <HeightDiv />
           <TransactionStatusSection />
+          <HeightDiv />
+          <SelectStockSection />
         </HomeMainDiv>
       </HomeMainTag>
     </HomeMainContainer>
