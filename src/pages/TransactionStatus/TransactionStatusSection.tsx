@@ -1,84 +1,126 @@
 import Image from 'next/image';
+import { StockItem } from './types';
+import Content from './Content';
+import Slider from 'react-slick';
+import { useState } from 'react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const stockItems: StockItem[] = [
+  {
+    id: 1,
+    rank: 1,
+    logoUrl: '/images/hanwha.png',
+    name: '한화에어로스페이스',
+    price: 672000,
+    priceChange: 7.1,
+    volume: 82,
+  },
+  {
+    id: 2,
+    rank: 2,
+    logoUrl: '/images/samsung.png',
+    name: '삼성중공업',
+    price: 13890,
+    priceChange: 3.0,
+    volume: 21,
+  },
+];
+
+function NextArrow(props: any) {
+  const { onClick, currentSlide } = props;
+  if (currentSlide === 1) return null;
+
+  return (
+    <button
+      className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#17171c] hover:bg-[#3c3c3e] border border-solid border-[#3c3c47]"
+      onClick={onClick}
+    >
+      <span className="text-[#e4e4e5] text-xl">›</span>
+    </button>
+  );
+}
+
+function PrevArrow(props: any) {
+  const { onClick, currentSlide } = props;
+  if (currentSlide === 0) return null;
+
+  return (
+    <button
+      className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#17171c] hover:bg-[#3c3c3e] border border-solid border-[#3c3c47]"
+      onClick={onClick}
+    >
+      <span className="text-[#e4e4e5] text-xl">‹</span>
+    </button>
+  );
+}
 
 export default function TransactionStatusSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow currentSlide={currentSlide} />,
+    prevArrow: <PrevArrow currentSlide={currentSlide} />,
+    swipeToSlide: true,
+    touchThreshold: 10,
+    beforeChange: (oldIndex: number, newIndex: number) => {
+      setCurrentSlide(newIndex);
+    },
+    responsive: [
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <section>
-      <div className="flex flex-col p-2 gap-[2px] mb-8">
-        <span className="text-[20px] font-weight-bold text-[#e4e4e5]">
+    <section className="p-4">
+      <div className="flex flex-col gap-[2px] mb-4">
+        <span className="text-[20px] font-bold text-[#e4e4e5]">
           국내 투자자별 거래 현황
         </span>
       </div>
-      <div>
-        <div className="position-relative flex max-width-[100%] height-[40px]">
-          <button className="flex items-center justify-center position-relative border-none background-color-[transparent]">
-            <span className="font-size-[15px] text-[#c3c3c6] font-weight-normal">
-              순매수
-            </span>
-          </button>
-          <button className="flex items-center justify-center position-relative border-none background-color-[transparent]">
-            <span className="font-size-[15px] text-[#c3c3c6] font-weight-normal">
-              순매도
-            </span>
-          </button>
-        </div>
+      <div className="flex gap-4 mb-4">
+        <button className="flex items-center justify-center border-none bg-transparent">
+          <span className="text-[15px] text-[#c3c3c6] font-normal">순매수</span>
+        </button>
+        <button className="flex items-center justify-center border-none bg-transparent">
+          <span className="text-[15px] text-[#c3c3c6] font-normal">순매도</span>
+        </button>
       </div>
-      <div className="relative grid grid-cols-[minmax(10px,1fr)]">
-        <div className="grid auto-flow-column auto-cols-max w-max">
-          <ol>
-            <li className="list-none w-[320px] margin-right-[40px]">
-              <div>
-                <div className="flex gap-[8px] align-center margin-[8px 0]">
-                  <div className="flex gap-[8px] align-center margin-[8px 0]">
-                    <div className="padding-[8px] flex flex-column gap-[2px]">
-                      <div className="flex">
-                        <span className="padding-right-[6px] font-size-[17px] font-weight-bold text-[#e4e4e5]">
-                          외국인
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-column">
-                <div className="flex items-center border-radius-[10px]">
-                  <div className="flex padding-[8px 4px 8px 8px] items-center gap-[8px]">
-                    <span className="font-size-[15px] font-weight-bold text-[#449bff]">
-                      1
-                    </span>
-                    <div className="width-[34px] height-[34px] position-relative border-radius-[50%]">
-                      <Image
-                        src=""
-                        alt="upbit"
-                        className="width-[34px] height-[34px]"
-                      />
-                    </div>
-                  </div>
-                  <div></div>
-                </div>
-                <div className="flex flex-1">
-                  <div className="grid grid-cols-[minmax(0px,2fr)_minmax(0px,1fr)] min-height-[40px]">
-                    <div className="flex flex-col">
-                      <span className="text-[15px] font-weight-bold text-[#e4e4e5]">
-                        두산에너빌리티
-                      </span>
-                      <span>
-                        <span className="text-[15px] font-weight-bold text-[#e4e4e5]">
-                          23,500원
-                        </span>
-                        <span className="text-[15px] font-weight-bold text-[#e4e4e5]">
-                          8%
-                        </span>
-                      </span>
-                    </div>
-                    <span className="text-[15px] font-weight-bold text-[#e4e4e5]">
-                      133억원
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ol>
-        </div>
+      <div>
+        <Slider {...settings}>
+          <div className="min-w-[320px]">
+            <Content
+              title="외국인"
+              timestamp="오늘 09:20"
+              stockItems={stockItems}
+            />
+          </div>
+          <div className="min-w-[320px]">
+            <Content
+              title="기관"
+              timestamp="오늘 09:20"
+              stockItems={stockItems}
+            />
+          </div>
+          <div className="min-w-[320px]">
+            <Content
+              title="개인"
+              timestamp="오늘 09:20"
+              stockItems={stockItems}
+            />
+          </div>
+        </Slider>
       </div>
     </section>
   );

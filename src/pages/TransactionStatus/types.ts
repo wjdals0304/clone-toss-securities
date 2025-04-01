@@ -4,6 +4,6 @@ export interface StockItem {
   name: string;
   price: number;
   priceChange: number;
-  volume: string;
+  volume: number;
   logoUrl: string;
 }
