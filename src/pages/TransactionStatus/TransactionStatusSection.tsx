@@ -33,10 +33,10 @@ function NextArrow(props: any) {
 
   return (
     <button
-      className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#17171c] hover:bg-[#3c3c3e] border border-solid border-[#3c3c47]"
+      className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
       onClick={onClick}
     >
-      <span className="text-[#e4e4e5] text-xl">›</span>
+      <span className="text-white text-xl">›</span>
     </button>
   );
 }
@@ -47,10 +47,10 @@ function PrevArrow(props: any) {
 
   return (
     <button
-      className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#17171c] hover:bg-[#3c3c3e] border border-solid border-[#3c3c47]"
+      className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
       onClick={onClick}
     >
-      <span className="text-[#e4e4e5] text-xl">‹</span>
+      <span className="text-white text-xl">‹</span>
     </button>
   );
 }
@@ -85,16 +85,16 @@ export default function TransactionStatusSection() {
   return (
     <section className="p-4">
       <div className="flex flex-col gap-[2px] mb-4">
-        <span className="text-[20px] font-bold text-[#e4e4e5]">
+        <span className="text-[20px] font-bold text-white">
           국내 투자자별 거래 현황
         </span>
       </div>
       <div className="flex gap-4 mb-4">
         <button className="flex items-center justify-center border-none bg-transparent">
-          <span className="text-[15px] text-[#c3c3c6] font-normal">순매수</span>
+          <span className="text-[15px] text-lightGray font-normal">순매수</span>
         </button>
         <button className="flex items-center justify-center border-none bg-transparent">
-          <span className="text-[15px] text-[#c3c3c6] font-normal">순매도</span>
+          <span className="text-[15px] text-lightGray font-normal">순매도</span>
         </button>
       </div>
       <div>

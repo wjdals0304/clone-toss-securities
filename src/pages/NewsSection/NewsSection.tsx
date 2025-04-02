@@ -20,24 +20,27 @@ export default function NewsSection() {
     <div className="min-h-[340px]">
       <div className="flex gap-4 mb-2">
         <button>
-          <span className="text-[15px] font-normal text-[#c3c3c3]">
+          <span className="text-[15px] font-normal text-lightGray">
             주요 뉴스
           </span>
         </button>
         <button>
-          <span className="text-[15px] font-normal text-[#c3c3c3]">
+          <span className="text-[15px] font-normal text-lightGray">
             추천 뉴스
           </span>
         </button>
       </div>
       <div className="flex flex-col gap-4">
         {NewsItemList.map(item => (
-          <div className="flex justify-between items-center p-[8px 0]">
+          <div
+            key={item.title}
+            className="flex justify-between items-center p-[8px 0]"
+          >
             <div className="flex flex-col">
-              <span className="text-[15px] font-normal text-[#c3c3c3]">
+              <span className="text-[15px] font-normal text-lightGray">
                 {item.title}
               </span>
-              <span className="text-[13px] font-normal text-[#9292a4]">
+              <span className="text-[13px] font-normal text-darkGray">
                 {item.time}
               </span>
             </div>

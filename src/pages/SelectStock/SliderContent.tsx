@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import Content from './Content';
 import { useState } from 'react';
 import { StockTheme } from './type';
+
 function NextArrow(props: any) {
   const { onClick, currentSlide, slideCount } = props;
 
@@ -9,10 +10,10 @@ function NextArrow(props: any) {
 
   return (
     <button
-      className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#17171c] hover:bg-[#3c3c3e] border border-solid border-[#3c3c47]"
+      className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
       onClick={onClick}
     >
-      <span className="text-[#e4e4e5] text-lg">›</span>
+      <span className="text-white text-lg">›</span>
     </button>
   );
 }
@@ -24,10 +25,10 @@ function PrevArrow(props: any) {
 
   return (
     <button
-      className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#17171c] hover:bg-[#3c3c3e] border border-solid border-[#3c3c47]"
+      className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
       onClick={onClick}
     >
-      <span className="text-[#e4e4e5] text-lg">‹</span>
+      <span className="text-white text-lg">‹</span>
     </button>
   );
 }
