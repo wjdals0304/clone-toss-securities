@@ -17,7 +17,7 @@ export default function StockItem({ stock }: { stock: Stock }) {
       </div>
       <span
         className={`text-[15px] ${
-          stock.change >= 0 ? 'text-stockUp' : 'text-stockDown'
+          stock.change >= 0 ? 'text-stockRedUp' : 'text-stockBlueDown'
         }`}
       >
         {stock.change > 0 ? '+' : ''}

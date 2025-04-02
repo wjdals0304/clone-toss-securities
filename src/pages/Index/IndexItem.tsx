@@ -14,14 +14,14 @@ export default function IndexItem({ item }: IndexItemProps) {
         <div className="flex flex-row gap-2 items-center">
           <span
             className={`text-[15px] font-normal ${
-              isPositive ? 'text-stockUp' : 'text-stockDown'
+              isPositive ? 'text-stockRedUp' : 'text-stockBlueDown'
             }`}
           >
             {item.price}
           </span>
           <span
             className={`text-[15px] font-normal ${
-              isPositive ? 'text-stockUp' : 'text-stockDown'
+              isPositive ? 'text-stockRedUp' : 'text-stockBlueDown'
             }`}
           >
             {isPositive ? '+' : ''}

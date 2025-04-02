@@ -25,7 +25,7 @@ export default function Content({
             className="flex items-center p-[2px] hover:bg-hoverDark rounded-lg transition-colors"
           >
             <div className="flex items-center gap-3 flex-1">
-              <span className="text-[15px] font-bold text-stockDown w-4">
+              <span className="text-[15px] font-bold text-stockBlueDown w-4">
                 {item.rank}
               </span>
               <div className="w-[34px] h-[34px] relative rounded-full bg-white flex items-center justify-center overflow-hidden">
@@ -47,7 +47,9 @@ export default function Content({
                   </span>
                   <span
                     className={`text-[15px] ${
-                      item.priceChange >= 0 ? 'text-stockDown' : 'text-stockUp'
+                      item.priceChange >= 0
+                        ? 'text-stockBlueDown'
+                        : 'text-stockRedUp'
                     }`}
                   >
                     {item.priceChange >= 0 ? '+' : ''}

@@ -16,8 +16,8 @@ module.exports = {
         darkGray: '#9292a4', // 진한 회색 텍스트
 
         // 주식 관련 색상
-        stockUp: '#ff4444', // 상승 빨간색
-        stockDown: '#449bff', // 하락 파란색
+        stockRedUp: '#ff4444', // 상승 빨간색
+        stockBlueDown: '#449bff', // 하락 파란색
 
         // 배경/하이라이트 색상
         hoverHighlight: '#D1D1FD', // 호버 시 하이라이트 색상
