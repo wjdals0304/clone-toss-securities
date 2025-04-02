@@ -8,7 +8,7 @@ import {
   type StockTabType,
   type StockPeriodType,
 } from '@/constants/stockConstants';
-
+import LiveChartTab from './LiveChartTab';
 interface LiveChartTab {
   name: string;
   value: StockTabType;
@@ -43,17 +43,18 @@ export default function LiveChartSection() {
         </LiveChartHeaderTitleContainer>
         <LiveChartTabListContainer>
           {LiveChartTabList.map(tab => (
-            <LiveChartTabListSpan
+            <LiveChartTab
               key={tab.value}
-              $isSelected={selectedTab === tab.value}
-              onClick={() => handleTabClick(tab.value)}
-            >
-              {tab.name}
-            </LiveChartTabListSpan>
+              tab={tab}
+              selectedTab={selectedTab}
+              handleTabClick={handleTabClick}
+            />
           ))}
         </LiveChartTabListContainer>
-        <LiveChartActiveLine $isSelected={selectedTab === STOCK_TAB.VOLUME} />
-        <DateFilter onPeriodChange={handlePeriodChange} />
+        <DateFilter
+          selectedPeriod={selectedPeriod}
+          onPeriodChange={handlePeriodChange}
+        />
       </LiveChartHeader>
       <StockList selectedTab={selectedTab} selectedPeriod={selectedPeriod} />
     </LiveChartSectionContainer>
@@ -64,7 +65,7 @@ const LiveChartHeaderTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 `;
 
 const LiveChartHeaderTitle = styled.span`
@@ -88,23 +89,5 @@ const LiveChartTabListContainer = styled.div`
   display: flex;
   gap: 24px;
   border-bottom: 1px solid #333d4b;
-`;
-
-const LiveChartTabListSpan = styled.span<{ $isSelected: boolean }>`
-  font-size: 16px;
-  font-weight: ${({ $isSelected }) => ($isSelected ? '600' : '400')};
-  color: ${({ $isSelected }) => ($isSelected ? '#e4e4e5' : '#c3c3c3')};
-  cursor: pointer;
-  padding: 8px 0;
-  position: relative;
-`;
-
-const LiveChartActiveLine = styled.div<{ $isSelected: boolean }>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: ${({ $isSelected }) =>
-    $isSelected ? '#3485fa' : 'transparent'};
+  margin-bottom: 16px;
 `;

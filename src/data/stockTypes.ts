@@ -1,15 +1,16 @@
-export interface VolumeStock {
+import { STOCK_TAB } from '@/constants/stockConstants';
+
+interface BaseStock {
   rank: number;
   name: string;
   price: number;
   change: number;
-  volume: number;
 }
 
-export interface VolumeCountStock {
-  rank: number;
-  name: string;
-  price: number;
-  change: number;
-  volume_count: number;
+export interface VolumeStock extends BaseStock {
+  [STOCK_TAB.VOLUME]: number;
+}
+
+export interface VolumeCountStock extends BaseStock {
+  [STOCK_TAB.VOLUME_COUNT]: number;
 }

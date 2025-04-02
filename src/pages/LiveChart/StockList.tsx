@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { VolumeStock, VolumeCountStock } from '../../data/stockTypes';
-import { STOCK_TAB } from '@/constants/stockConstants';
-
+import { STOCK_TAB, StockTabType } from '@/constants/stockConstants';
+import StockListItem from './StockListItem';
 interface StockListProps {
   selectedTab: string;
   selectedPeriod: string;
@@ -60,28 +60,11 @@ export default function StockList({
         </StockTHead>
         <StockTBody>
           {stocks.map(stock => (
-            <StockTr key={stock.rank}>
-              <StockTd>
-                <StockNameContainer>
-                  <StockNumberSpan>{stock.rank}</StockNumberSpan>
-                  <StockNameSpan>{stock.name}</StockNameSpan>
-                </StockNameContainer>
-              </StockTd>
-              <StockTd>{stock.price.toLocaleString()}원</StockTd>
-              <StockTd
-                className={
-                  stock.change >= 0 ? 'text-stockUp' : 'text-stockDown'
-                }
-              >
-                {stock.change >= 0 ? '+' : ''}
-                {stock.change}%
-              </StockTd>
-              <StockTd>
-                {selectedTab === 'volume_count'
-                  ? `${stock.volume_count?.toLocaleString()}주`
-                  : `${stock.volume?.toLocaleString()}억원`}
-              </StockTd>
-            </StockTr>
+            <StockListItem
+              key={stock.rank}
+              stock={stock}
+              selectedTab={selectedTab as StockTabType}
+            />
           ))}
         </StockTBody>
       </StockTable>
@@ -95,7 +78,7 @@ const StyledCol = styled.col`
 
 const StockListContainer = styled.div`
   overflow: hidden;
-  padding: 8px 0;
+  padding: 8px 12px;
 `;
 
 const StockTable = styled.table`
@@ -114,21 +97,11 @@ const StockTHead = styled.thead`
 const StockTBody = styled.tbody`
   display: table-row-group;
   vertical-align: middle;
-  unicode-bidi: isolate;
   border-color: inherit;
 `;
 
 const StockTr = styled.tr`
   height: 44px;
-`;
-
-const StockTd = styled.td`
-  text-align: right;
-  color: #e4e4e5;
-
-  &:first-child {
-    text-align: left;
-  }
 `;
 
 const StockTh = styled.th`
@@ -142,23 +115,4 @@ const StockTh = styled.th`
   &:last-child {
     color: #3485fa;
   }
-`;
-
-const StockNameContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const StockNumberSpan = styled.span`
-  min-width: 28px;
-  margin-right: 8px;
-  color: #e4e4e5;
-`;
-
-const StockNameSpan = styled.span`
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  word-break: break-all;
-  color: #e4e4e5;
 `;
