@@ -1,27 +1,42 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { VolumeStock, VolumeCountStock } from '../../data/stockTypes';
+import { STOCK_TAB } from '@/constants/stockConstants';
 
-const stockList = [
-  {
-    name: '테슬라',
-    price: 100000,
-    change: -7.2,
-    volume: 8.9,
-  },
-  {
-    name: '엔비디아',
-    price: 100000,
-    change: -7.2,
-    volume: 8.9,
-  },
-  {
-    name: '애플',
-    price: 100000,
-    change: -7.2,
-    volume: 8.9,
-  },
-];
+interface StockListProps {
+  selectedTab: string;
+  selectedPeriod: string;
+}
 
-export default function StockList() {
+export default function StockList({
+  selectedTab,
+  selectedPeriod,
+}: StockListProps) {
+  const [stocks, setStocks] = useState<VolumeStock[] | VolumeCountStock[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        const response = await fetch(
+          `/api/stocks?tab=${selectedTab}&period=${selectedPeriod}`,
+        );
+        const data = await response.json();
+        setStocks(data);
+      } catch (error) {
+        console.error('Error fetching stocks:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStocks();
+  }, [selectedTab, selectedPeriod]);
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
+
   return (
     <StockListContainer>
       <StockTable>
@@ -36,22 +51,36 @@ export default function StockList() {
             <StockTh>종목</StockTh>
             <StockTh>현재가</StockTh>
             <StockTh>등락률</StockTh>
-            <StockTh>거래대금 많은 순</StockTh>
+            <StockTh>
+              {selectedTab === STOCK_TAB.VOLUME_COUNT
+                ? '거래량 많은 순'
+                : '거래대금 많은 순'}
+            </StockTh>
           </StockTr>
         </StockTHead>
         <StockTBody>
-          {stockList.map((stock, index) => (
-            <StockTr key={index}>
+          {stocks.map(stock => (
+            <StockTr key={stock.rank}>
               <StockTd>
                 <StockNameContainer>
-                  <StockHeartButton>❤️</StockHeartButton>
-                  <StockNumberSpan>{index + 1}</StockNumberSpan>
+                  <StockNumberSpan>{stock.rank}</StockNumberSpan>
                   <StockNameSpan>{stock.name}</StockNameSpan>
                 </StockNameContainer>
               </StockTd>
               <StockTd>{stock.price.toLocaleString()}원</StockTd>
-              <StockTd>{stock.change}%</StockTd>
-              <StockTd>{stock.volume.toLocaleString()}억원</StockTd>
+              <StockTd
+                className={
+                  stock.change >= 0 ? 'text-stockUp' : 'text-stockDown'
+                }
+              >
+                {stock.change >= 0 ? '+' : ''}
+                {stock.change}%
+              </StockTd>
+              <StockTd>
+                {selectedTab === 'volume_count'
+                  ? `${stock.volume_count?.toLocaleString()}주`
+                  : `${stock.volume?.toLocaleString()}억원`}
+              </StockTd>
             </StockTr>
           ))}
         </StockTBody>
@@ -120,16 +149,9 @@ const StockNameContainer = styled.div`
   align-items: center;
 `;
 
-const StockHeartButton = styled.button`
-  width: 24px;
-  height: 24px;
-  border: none;
-  background-color: transparent;
-`;
-
 const StockNumberSpan = styled.span`
   min-width: 28px;
-  margin: 0 8px;
+  margin-right: 8px;
   color: #e4e4e5;
 `;
 
