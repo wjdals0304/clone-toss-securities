@@ -3,7 +3,7 @@ import { STOCK_PERIOD, type StockPeriodType } from '@/constants/stockConstants';
 
 interface DateFilterProps {
   selectedPeriod: StockPeriodType;
-  onPeriodChange: (period: StockPeriodType) => void;
+  handlePeriodChange: (period: StockPeriodType) => void;
 }
 
 const DateFilterList = [
@@ -13,19 +13,22 @@ const DateFilterList = [
 
 export default function DateFilter({
   selectedPeriod,
-  onPeriodChange,
+  handlePeriodChange,
 }: DateFilterProps) {
   return (
     <DateFilterContainer>
-      {DateFilterList.map(item => (
-        <DateFilterButton
-          key={item.value}
-          onClick={() => onPeriodChange(item.value)}
-          $isSelected={selectedPeriod === item.value}
-        >
-          {item.name}
-        </DateFilterButton>
-      ))}
+      {DateFilterList.map(item => {
+        const { name, value } = item;
+        return (
+          <DateFilterButton
+            key={value}
+            onClick={() => handlePeriodChange(value)}
+            $isSelected={selectedPeriod === value}
+          >
+            {name}
+          </DateFilterButton>
+        );
+      })}
     </DateFilterContainer>
   );
 }

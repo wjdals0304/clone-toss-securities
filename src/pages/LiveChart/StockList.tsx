@@ -1,39 +1,27 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
 import { VolumeStock, VolumeCountStock } from '../../data/stockTypes';
-import { STOCK_TAB, StockTabType } from '@/constants/stockConstants';
+import {
+  STOCK_TAB,
+  StockTabType,
+  StockPeriodType,
+} from '@/constants/stockConstants';
 import StockListItem from './StockListItem';
+import { useStocks } from '@/hooks/useStocks';
 interface StockListProps {
-  selectedTab: string;
-  selectedPeriod: string;
+  selectedTab: StockTabType;
+  selectedPeriod: StockPeriodType;
 }
 
 export default function StockList({
   selectedTab,
   selectedPeriod,
 }: StockListProps) {
-  const [stocks, setStocks] = useState<VolumeStock[] | VolumeCountStock[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: stocks = [], isLoading } = useStocks(
+    selectedTab,
+    selectedPeriod,
+  );
 
-  useEffect(() => {
-    const fetchStocks = async () => {
-      try {
-        const response = await fetch(
-          `/api/stocks?tab=${selectedTab}&period=${selectedPeriod}`,
-        );
-        const data = await response.json();
-        setStocks(data);
-      } catch (error) {
-        console.error('Error fetching stocks:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStocks();
-  }, [selectedTab, selectedPeriod]);
-
-  if (loading) {
+  if (isLoading) {
     return <div>로딩 중...</div>;
   }
 
@@ -59,21 +47,24 @@ export default function StockList({
           </StockTr>
         </StockTHead>
         <StockTBody>
-          {stocks.map(stock => (
-            <StockListItem
-              key={stock.rank}
-              stock={stock}
-              selectedTab={selectedTab as StockTabType}
-            />
-          ))}
+          {stocks.map((stock: VolumeStock | VolumeCountStock) => {
+            const { rank } = stock;
+            return (
+              <StockListItem
+                key={rank}
+                stock={stock}
+                selectedTab={selectedTab}
+              />
+            );
+          })}
         </StockTBody>
       </StockTable>
     </StockListContainer>
   );
 }
 
-const StyledCol = styled.col`
-  width: ${props => props.width};
+const StyledCol = styled.col<{ width: string }>`
+  width: ${({ width }) => width};
 `;
 
 const StockListContainer = styled.div`

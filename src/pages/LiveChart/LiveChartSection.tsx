@@ -42,18 +42,21 @@ export default function LiveChartSection() {
           <LiveChartHeaderTitle>실시간 차트</LiveChartHeaderTitle>
         </LiveChartHeaderTitleContainer>
         <LiveChartTabListContainer>
-          {LiveChartTabList.map(tab => (
-            <LiveChartTab
-              key={tab.value}
-              tab={tab}
-              selectedTab={selectedTab}
-              handleTabClick={handleTabClick}
-            />
-          ))}
+          {LiveChartTabList.map(tab => {
+            const { value } = tab;
+            return (
+              <LiveChartTab
+                key={value}
+                tab={tab}
+                selectedTab={selectedTab}
+                handleTabClick={handleTabClick}
+              />
+            );
+          })}
         </LiveChartTabListContainer>
         <DateFilter
           selectedPeriod={selectedPeriod}
-          onPeriodChange={handlePeriodChange}
+          handlePeriodChange={handlePeriodChange}
         />
       </LiveChartHeader>
       <StockList selectedTab={selectedTab} selectedPeriod={selectedPeriod} />

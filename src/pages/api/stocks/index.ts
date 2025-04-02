@@ -8,7 +8,6 @@ import {
   STOCK_TAB,
   STOCK_PERIOD,
   type StockTabType,
-  type StockPeriodType,
 } from '@/constants/stockConstants';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
