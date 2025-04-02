@@ -24,8 +24,8 @@ export default function IndexSection() {
     <div className="flex flex-col mb-[1rem]">
       <div className="flex gap-[1rem] mb-[0.5rem]">
         {IndexTitle.map(item => (
-          <button>
-            <span className="text-[14px] font-normal text-[#c3c3c3]">
+          <button key={item}>
+            <span className="text-[14px] font-normal text-lightGray">
               {item}
             </span>
           </button>
