@@ -1,83 +1,106 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import StockVolumeTable from './StockVolumeTable';
+import StockCountTable from './StockCountTable';
 import DateFilter from './DateFilter';
-import StockList from './StockList';
+import {
+  STOCK_TAB,
+  STOCK_PERIOD,
+  type StockTabType,
+  type StockPeriodType,
+} from '@/constants/stockConstants';
+import LiveChartTab from './LiveChartTab';
+import { useStocks } from '@/hooks/useStocks';
+interface LiveChartTab {
+  name: string;
+  value: StockTabType;
+}
+
+const LiveChartTabList: LiveChartTab[] = [
+  { name: '토스증권 거래대금', value: STOCK_TAB.VOLUME },
+  { name: '토스증권 거래량', value: STOCK_TAB.VOLUME_COUNT },
+];
 
 export default function LiveChartSection() {
-  const LiveChartTabList = [
-    '토스증권 거래대금',
-    '토스증권 거래량',
-    '거래대금',
-    '거래량',
-    '급상승',
-    '급하락',
-    '인기',
-  ];
+  const [selectedTab, setSelectedTab] = useState<StockTabType>(
+    STOCK_TAB.VOLUME,
+  );
+  const [selectedPeriod, setSelectedPeriod] = useState<StockPeriodType>(
+    STOCK_PERIOD.REALTIME,
+  );
+
+  const handleTabClick = (tab: StockTabType) => {
+    setSelectedTab(tab);
+  };
+
+  const handlePeriodChange = (period: StockPeriodType) => {
+    setSelectedPeriod(period);
+  };
+  const { data = [] } = useStocks(selectedTab, selectedPeriod);
+  const volumeFields = ['종목', '현재가', '등락률', '거래대금 많은순'];
+  const countFields = ['종목', '현재가', '등락률', '거래량 많은순'];
 
   return (
     <LiveChartSectionContainer>
-      <LiveChartHeaderSection>
-        <LiveChartHeaderTitle>실시간 차트</LiveChartHeaderTitle>
-        <LiveChartSectionCategoryDiv>
-          <LiveChartTabListDiv>
-            {LiveChartTabList.map(item => (
-              <Button key={item}>
-                <LiveChartTabListSpan>{item}</LiveChartTabListSpan>
-              </Button>
-            ))}
-          </LiveChartTabListDiv>
-        </LiveChartSectionCategoryDiv>
-        <DateFilter />
-      </LiveChartHeaderSection>
-      <StockList />
+      <LiveChartHeader>
+        <LiveChartHeaderTitleContainer>
+          <LiveChartHeaderTitle>실시간 차트</LiveChartHeaderTitle>
+        </LiveChartHeaderTitleContainer>
+        <LiveChartTabListContainer>
+          {LiveChartTabList.map(tab => {
+            const { value } = tab;
+            return (
+              <LiveChartTab
+                key={value}
+                tab={tab}
+                selectedTab={selectedTab}
+                handleTabClick={handleTabClick}
+              />
+            );
+          })}
+        </LiveChartTabListContainer>
+        <DateFilter
+          selectedPeriod={selectedPeriod}
+          handlePeriodChange={handlePeriodChange}
+        />
+      </LiveChartHeader>
+      {selectedTab === STOCK_TAB.VOLUME ? (
+        <StockVolumeTable fields={volumeFields} data={data} />
+      ) : (
+        <StockCountTable fields={countFields} data={data} />
+      )}
     </LiveChartSectionContainer>
   );
 }
 
-const LiveChartSectionContainer = styled.div`
-  width: 100%;
-  margin: 16px auto 0;
+const LiveChartHeaderTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
-const LiveChartHeaderSection = styled.section`
+const LiveChartHeaderTitle = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  color: #e4e4e5;
+`;
+
+const LiveChartSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 662px;
+`;
+
+const LiveChartHeader = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const LiveChartHeaderTitle = styled.span`
-  font-size: 17px;
-  font-weight: bold;
-  line-height: 1.45;
-  color: #e4e4e5;
-`;
-
-const LiveChartSectionCategoryDiv = styled.div`
-  position: relative;
-  margin-top: 8px;
-`;
-
-const LiveChartTabListDiv = styled.div`
-  position: relative;
+const LiveChartTabListContainer = styled.div`
   display: flex;
-  max-width: 100%;
-  overflow: visible;
-  height: 40px;
-  border-bottom: 1px solid rgba(222, 222, 222, 0.19);
-  gap: 20px;
-`;
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  appearance: none;
-`;
-
-const LiveChartTabListSpan = styled.span`
-  color: #c3c3c3;
-  line-height: 1.45;
-  font-size: 15px;
+  gap: 24px;
+  border-bottom: 1px solid #333d4b;
+  margin-bottom: 16px;
 `;

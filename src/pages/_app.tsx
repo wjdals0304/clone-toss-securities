@@ -3,11 +3,17 @@ import { StyleSheetManager } from 'styled-components';
 import isPropValid from '@emotion/is-prop-valid';
 import '@/styles/globals.css';
 import '@/styles/reset.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <StyleSheetManager shouldForwardProp={isPropValid}>
-      <Component {...pageProps} />
-    </StyleSheetManager>
+    <QueryClientProvider client={queryClient}>
+      <StyleSheetManager shouldForwardProp={isPropValid}>
+        <Component {...pageProps} />
+      </StyleSheetManager>
+    </QueryClientProvider>
   );
 }

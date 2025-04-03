@@ -6,7 +6,11 @@ const nextConfig = {
   /* config options here */
   reactStrictMode: true,
   images: {
-    domains: ['static.toss.im', 'static.tossinvestcdn.com'],
+    domains: [
+      'static.toss.im',
+      'static.tossinvestcdn.com',
+      'thumb.tossinvest.com',
+    ],
   },
 };
 
