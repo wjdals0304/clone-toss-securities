@@ -17,9 +17,6 @@ export function useCommunity() {
     queryKey: ['community'],
     queryFn: async () => {
       const response = await fetch('/api/community');
-      if (!response.ok) {
-        throw new Error('Failed to fetch community data');
-      }
       return response.json();
     },
   });
@@ -30,9 +27,6 @@ export function useSelectedStock(selectedStockId: string) {
     queryKey: ['community', selectedStockId],
     queryFn: async () => {
       const response = await fetch(`/api/community?stockId=${selectedStockId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch stock data');
-      }
       return response.json();
     },
     enabled: !!selectedStockId,

@@ -24,7 +24,4 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       posts: mockCommunityData.posts[defaultStockId],
     });
   }
-
-  res.setHeader('Allow', ['GET']);
-  res.status(405).end(`Method ${req.method} Not Allowed`);
 }
