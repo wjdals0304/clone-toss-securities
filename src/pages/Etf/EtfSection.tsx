@@ -1,53 +1,59 @@
 import styled from 'styled-components';
 import EtfContent from './EtfContent';
-
-const stockList = [
-  {
-    lank: 1,
-    name: 'UVIX',
-    desc: 'VIX 장기선물2배 ETF',
-    price: 100000,
-    logo: 'https://via.placeholder.com/150',
-    change: 10,
-  },
-  {
-    lank: 2,
-    name: 'UVIX',
-    desc: 'VIX 장기선물2배 ETF',
-    price: 100000,
-    logo: 'https://via.placeholder.com/150',
-    change: 10,
-  },
-];
+import { useEtfQuery } from '@/hooks/useEtfQuery';
 
 export default function EtfSection() {
+  const { data: sections, error } = useEtfQuery();
+
+  if (error) {
+    return <ErrorWrapper>{error.message}</ErrorWrapper>;
+  }
+
+  if (!sections) {
+    return null;
+  }
+
   return (
-    <section>
-      <EtfTitleContainer>
-        <EtfTitle>해외 ETF 모아보기</EtfTitle>
-      </EtfTitleContainer>
-      <EtfContentContainer>
-        <EtfContent title="레버리지 인버스" stockList={stockList} />
-        <EtfContent title="미국 주식" stockList={stockList} />
-      </EtfContentContainer>
-    </section>
+    <EtfContainer>
+      <EtfSectionTitle>해외 ETF 모아보기</EtfSectionTitle>
+      <EtfSectionWrapper>
+        {sections.map(section => (
+          <EtfContent
+            key={section.title}
+            title={section.title}
+            items={section.items}
+          />
+        ))}
+      </EtfSectionWrapper>
+    </EtfContainer>
   );
 }
 
-const EtfTitleContainer = styled.div`
+const EtfContainer = styled.div`
   padding: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 `;
 
-const EtfTitle = styled.h2`
-  font-size: 20px;
-  color: #e4e4e5;
+const EtfSectionTitle = styled.div`
+  font-size: 17px;
   font-weight: bold;
+  color: #fff;
+  margin-bottom: 16px;
 `;
 
-const EtfContentContainer = styled.div`
+const EtfSectionWrapper = styled.div`
   display: flex;
-  gap: 8px;
+  flex-direction: row;
+  gap: 32px;
+`;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #c3c3c6;
+`;
+
+const ErrorWrapper = styled(LoadingWrapper)`
+  color: #f04251;
 `;
