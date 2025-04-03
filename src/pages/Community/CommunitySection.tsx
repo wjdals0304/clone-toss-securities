@@ -1,8 +1,20 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import StockPost from './StockPost';
 import ExportStockRadioGroup from './StockRadioGroup';
+import { useCommunity, useSelectedStock } from '@/hooks/useCommunity';
 
 export default function CommunitySection() {
+  const [selectedStockId, setSelectedStockId] = useState<string>('');
+  const { data } = useCommunity();
+  const { data: selectedStockData } = useSelectedStock(selectedStockId);
+
+  if (!data) {
+    return <div>데이터를 불러올 수 없습니다.</div>;
+  }
+
+  const currentPosts = selectedStockId ? selectedStockData?.posts : data.posts;
+
   return (
     <CommunitySectionContainer>
       <CommunitySectionTitleContainer>
@@ -10,10 +22,14 @@ export default function CommunitySection() {
       </CommunitySectionTitleContainer>
       <CommunitySectionContentContainer>
         <StockListFieldSet>
-          <ExportStockRadioGroup />
+          <ExportStockRadioGroup
+            stocks={data.stocks}
+            selectedStockId={selectedStockId || data.currentStockId}
+            onStockSelect={setSelectedStockId}
+          />
         </StockListFieldSet>
         <StockPostSection>
-          <StockPost />
+          <StockPost posts={currentPosts || []} />
         </StockPostSection>
       </CommunitySectionContentContainer>
     </CommunitySectionContainer>
@@ -43,6 +59,7 @@ const CommunitySectionTitle = styled.h2`
 
 const CommunitySectionContentContainer = styled.div`
   display: flex;
+  width: 100%;
   height: 364px;
   margin-top: 16px;
   border-radius: 16px;
@@ -53,11 +70,12 @@ const StockListFieldSet = styled.fieldset`
   position: relative;
   display: flex;
   gap: 4px;
-  padding: 12px;
+  padding: 8px;
   flex: 1;
   height: 100%;
   background-color: #101013;
   border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
 `;
 
 const StockPostSection = styled.section`
