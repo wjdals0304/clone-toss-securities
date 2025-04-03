@@ -1,15 +1,12 @@
-import { STOCK_TAB, StockTabType } from '@/constants/stockConstants';
-import { VolumeStock, VolumeCountStock } from '@/data/stockTypes';
+import { VolumeCountStock } from '@/data/stockTypes';
 import styled from 'styled-components';
 
-export default function StockListItem({
+export default function StockListVolumeCountItem({
   stock,
-  selectedTab,
 }: {
-  stock: VolumeStock | VolumeCountStock;
-  selectedTab: StockTabType;
+  stock: VolumeCountStock;
 }) {
-  const { rank, name, price, change } = stock;
+  const { rank, name, price, change, volume_count } = stock;
   return (
     <StockTr key={rank}>
       <StockTd>
@@ -20,17 +17,12 @@ export default function StockListItem({
       </StockTd>
       <StockTd>{price.toLocaleString()}원</StockTd>
       <StockTd
-        className={stock.change >= 0 ? 'text-stockUp' : 'text-stockDown'}
+        className={stock.change >= 0 ? 'text-stockRedUp' : 'text-stockBlueDown'}
       >
         {change >= 0 ? '+' : ''}
         {change}%
       </StockTd>
-      <StockTd>
-        {selectedTab === STOCK_TAB.VOLUME_COUNT
-          ? STOCK_TAB.VOLUME_COUNT in stock &&
-            `${stock.volume_count.toLocaleString()}주`
-          : STOCK_TAB.VOLUME in stock && `${stock.volume.toLocaleString()}억원`}
-      </StockTd>
+      <StockTd>{volume_count.toLocaleString()}주</StockTd>
     </StockTr>
   );
 }

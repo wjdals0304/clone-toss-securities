@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import StockList from './StockList';
+import StockVolumeTable from './StockVolumeTable';
+import StockCountTable from './StockCountTable';
 import DateFilter from './DateFilter';
 import {
   STOCK_TAB,
@@ -9,6 +10,7 @@ import {
   type StockPeriodType,
 } from '@/constants/stockConstants';
 import LiveChartTab from './LiveChartTab';
+import { useStocks } from '@/hooks/useStocks';
 interface LiveChartTab {
   name: string;
   value: StockTabType;
@@ -34,6 +36,9 @@ export default function LiveChartSection() {
   const handlePeriodChange = (period: StockPeriodType) => {
     setSelectedPeriod(period);
   };
+  const { data = [] } = useStocks(selectedTab, selectedPeriod);
+  const volumeFields = ['종목', '현재가', '등락률', '거래대금 많은순'];
+  const countFields = ['종목', '현재가', '등락률', '거래량 많은순'];
 
   return (
     <LiveChartSectionContainer>
@@ -59,7 +64,11 @@ export default function LiveChartSection() {
           handlePeriodChange={handlePeriodChange}
         />
       </LiveChartHeader>
-      <StockList selectedTab={selectedTab} selectedPeriod={selectedPeriod} />
+      {selectedTab === STOCK_TAB.VOLUME ? (
+        <StockVolumeTable fields={volumeFields} data={data} />
+      ) : (
+        <StockCountTable fields={countFields} data={data} />
+      )}
     </LiveChartSectionContainer>
   );
 }
@@ -81,6 +90,7 @@ const LiveChartSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-height: 662px;
 `;
 
 const LiveChartHeader = styled.div`
