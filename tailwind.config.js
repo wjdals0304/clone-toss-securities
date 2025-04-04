@@ -14,6 +14,7 @@ module.exports = {
         lightGray: '#c3c3c3', // 연한 회색 텍스트
         gray: '#8b8b8e', // 중간 회색 텍스트
         darkGray: '#9292a4', // 진한 회색 텍스트
+        tapBackground: '#3A3A3C',
 
         // 주식 관련 색상
         stockRedUp: '#ff4444', // 상승 빨간색
