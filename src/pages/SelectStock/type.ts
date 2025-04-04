@@ -3,7 +3,7 @@ export interface Stock {
   name: string;
   price: number;
   change: number;
-  logo: string;
+  volume: number;
 }
 
 export interface StockTheme {
@@ -12,4 +12,8 @@ export interface StockTheme {
   description: string;
   conditions: string[];
   stocks: Stock[];
+}
+
+export interface SelectStockResponse {
+  themes: StockTheme[];
 }
