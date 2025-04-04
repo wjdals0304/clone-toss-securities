@@ -60,7 +60,7 @@ export default function SliderContent({ themes }: SliderContentProps) {
     },
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1000,
         settings: {
           slidesToShow: 1,
         },
@@ -69,14 +69,27 @@ export default function SliderContent({ themes }: SliderContentProps) {
   };
 
   return (
-    <div className="px-[2px]">
+    <div className="px-[10px] select-stock-slider">
       <Slider {...settings}>
         {themes.map(theme => (
-          <div key={theme.id} className="px-1 w-[300px]">
+          <div key={theme.id} className="px-2">
             <Content theme={theme} />
           </div>
         ))}
       </Slider>
+      <style jsx global>{`
+        .select-stock-slider .slick-slider {
+          margin: 0 -50px;
+        }
+        .select-stock-slider .slick-slide {
+          padding: 0 20px;
+        }
+        .select-stock-slider .slick-track {
+          display: flex;
+          margin-left: 0;
+          margin-right: 0;
+        }
+      `}</style>
     </div>
   );
 }
