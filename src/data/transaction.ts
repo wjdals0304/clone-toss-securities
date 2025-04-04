@@ -1,6 +1,6 @@
 import { TransactionSection } from '@/types/transaction';
 
-export const transactionData: TransactionSection[] = [
+export const transactionBuyData: TransactionSection[] = [
   {
     title: '외국인',
     subtitle: '오늘 15:37 기준',
@@ -130,6 +130,150 @@ export const transactionData: TransactionSection[] = [
         name: '카카오뱅크',
         price: 28150,
         priceChange: 3.5,
+        volume: 25800000000,
+      },
+      {
+        id: '15',
+        rank: 5,
+        name: 'LG전자',
+        price: 124500,
+        priceChange: -0.8,
+        volume: 21400000000,
+      },
+    ],
+  },
+];
+
+export const transactionSellData: TransactionSection[] = [
+  {
+    title: '외국인',
+    subtitle: '오늘 15:37 기준',
+    type: 'foreign',
+    items: [
+      {
+        id: '1',
+        rank: 1,
+        name: '한화솔루션',
+        price: 698000,
+        priceChange: -5.2,
+        volume: 57800000000,
+      },
+      {
+        id: '2',
+        rank: 2,
+        name: '카카오',
+        price: 198000,
+        priceChange: -1.2,
+        volume: 12300000000,
+      },
+      {
+        id: '3',
+        rank: 3,
+        name: 'KODEX 코스닥150레버리지',
+        price: 6545,
+        priceChange: -0.4,
+        volume: 11200000000,
+      },
+      {
+        id: '4',
+        rank: 4,
+        name: 'KODEX 200선물인버스2X',
+        price: 2310,
+        priceChange: -2.6,
+        volume: 11100000000,
+      },
+      {
+        id: '5',
+        rank: 5,
+        name: '알테오젠',
+        price: 42600,
+        priceChange: -4.1,
+        volume: 10200000000,
+      },
+    ],
+  },
+  {
+    title: '기관',
+    subtitle: '오늘 15:37 기준',
+    type: 'institution',
+    items: [
+      {
+        id: '6',
+        rank: 1,
+        name: '삼성전자',
+        price: 194000,
+        priceChange: -1.9,
+        volume: 178900000000,
+      },
+      {
+        id: '7',
+        rank: 2,
+        name: 'LG에너지솔루션',
+        price: 1111000,
+        priceChange: -5.8,
+        volume: 54000000000,
+      },
+      {
+        id: '8',
+        rank: 3,
+        name: '포스코퓨처엠',
+        price: 71400,
+        priceChange: -2.5,
+        volume: 40000000000,
+      },
+      {
+        id: '9',
+        rank: 4,
+        name: 'KODEX 200선물인버스2X',
+        price: 2310,
+        priceChange: -2.6,
+        volume: 28300000000,
+      },
+      {
+        id: '10',
+        rank: 5,
+        name: 'LG전자',
+        price: 193800,
+        priceChange: -1.2,
+        volume: 26100000000,
+      },
+    ],
+  },
+  {
+    title: '개인',
+    subtitle: '오늘 15:37 기준',
+    type: 'individual',
+    items: [
+      {
+        id: '11',
+        rank: 1,
+        name: '삼성전자',
+        price: 85400,
+        priceChange: -1.8,
+        volume: 89500000000,
+      },
+      {
+        id: '12',
+        rank: 2,
+        name: 'LG에너지솔루션',
+        price: 438000,
+        priceChange: -2.1,
+        volume: 45600000000,
+      },
+      {
+        id: '13',
+        rank: 3,
+        name: '포스코퓨처엠',
+        price: 375000,
+        priceChange: -2.3,
+        volume: 32100000000,
+      },
+      {
+        id: '14',
+        rank: 4,
+        name: '카카오뱅크',
+        price: 28150,
+        priceChange: -3.5,
         volume: 25800000000,
       },
       {

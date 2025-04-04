@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import { useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { TabButton } from '@/components/Transaction/TabButton';
 
 function NextArrow(props: any) {
   const { onClick, currentSlide, slideCount } = props;
@@ -34,7 +35,8 @@ function PrevArrow(props: any) {
 }
 
 export default function TransactionStatusSection() {
-  const { data: sections, error } = useTransactionQuery();
+  const [ranking, setRanking] = useState('buy');
+  const { data: sections, error } = useTransactionQuery(ranking);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   if (error) {
@@ -83,12 +85,16 @@ export default function TransactionStatusSection() {
         </span>
       </div>
       <div className="flex gap-4 mb-4">
-        <button className="flex items-center justify-center border-none bg-transparent">
-          <span className="text-[15px] text-lightGray font-normal">순매수</span>
-        </button>
-        <button className="flex items-center justify-center border-none bg-transparent">
-          <span className="text-[15px] text-lightGray font-normal">순매도</span>
-        </button>
+        <TabButton
+          label="순매수"
+          isActive={ranking === 'buy'}
+          onClick={() => setRanking('buy')}
+        />
+        <TabButton
+          label="순매도"
+          isActive={ranking === 'sell'}
+          onClick={() => setRanking('sell')}
+        />
       </div>
       <div className="relative">
         <Slider {...settings}>
