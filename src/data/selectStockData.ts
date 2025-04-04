@@ -1,0 +1,161 @@
+export const selectStockData = {
+  themes: [
+    {
+      id: 1,
+      title: '반도체 소재/부품 관련주',
+      description: '반도체 소재/부품 관련 기업들의 주식입니다.',
+      conditions: [
+        '반도체 소재/부품 제조',
+        '해외 수출 비중 높음',
+        '연구개발 투자 증가',
+      ],
+      stocks: [
+        {
+          id: 1,
+          name: '원익IPS',
+          price: 32850,
+          change: 2.5,
+          volume: 12500000,
+        },
+        {
+          id: 2,
+          name: '피에스케이',
+          price: 15400,
+          change: -1.2,
+          volume: 8900000,
+        },
+        {
+          id: 3,
+          name: '엘오티베큠',
+          price: 24600,
+          change: 1.8,
+          volume: 6700000,
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: '2차전지 소재주',
+      description: '2차전지 핵심 소재 관련 기업들의 주식입니다.',
+      conditions: [
+        '2차전지 소재 생산',
+        '글로벌 기업과의 협력',
+        '생산능력 확대',
+      ],
+      stocks: [
+        {
+          id: 4,
+          name: '에코프로',
+          price: 478000,
+          change: 3.2,
+          volume: 25600000,
+        },
+        {
+          id: 5,
+          name: '포스코퓨처엠',
+          price: 367500,
+          change: 1.5,
+          volume: 18900000,
+        },
+        {
+          id: 6,
+          name: '엘앤에프',
+          price: 188600,
+          change: -0.8,
+          volume: 15700000,
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: '꾸준한 배당주',
+      description: '안정적인 배당을 지급하는 기업들의 주식입니다.',
+      conditions: [
+        '배당수익률 3% 이상',
+        '배당 주기 1년 이상',
+        '최근 5년 연속 배당',
+      ],
+      stocks: [
+        {
+          id: 7,
+          name: '삼성화재',
+          price: 428000,
+          change: 1.2,
+          volume: 15800000,
+        },
+        {
+          id: 8,
+          name: 'SK텔레콤',
+          price: 51200,
+          change: -0.8,
+          volume: 12300000,
+        },
+        {
+          id: 9,
+          name: 'KT&G',
+          price: 91400,
+          change: 2.1,
+          volume: 9800000,
+        },
+      ],
+    },
+    {
+      id: 4,
+      title: '게임/엔터 성장주',
+      description: '게임과 엔터테인먼트 분야의 성장 기업들입니다.',
+      conditions: ['신작 출시 예정', '해외 매출 증가', 'IP 확장 진행'],
+      stocks: [
+        {
+          id: 10,
+          name: '넷마블',
+          price: 148500,
+          change: 2.8,
+          volume: 18500000,
+        },
+        {
+          id: 11,
+          name: '하이브',
+          price: 278000,
+          change: 1.5,
+          volume: 22100000,
+        },
+        {
+          id: 12,
+          name: '펄어비스',
+          price: 43200,
+          change: -1.2,
+          volume: 8900000,
+        },
+      ],
+    },
+    {
+      id: 5,
+      title: '바이오/제약 혁신기업',
+      description: '혁신적인 신약 개발 및 바이오 기술 기업들입니다.',
+      conditions: ['신약 파이프라인 보유', 'R&D 투자 확대', '글로벌 임상 진행'],
+      stocks: [
+        {
+          id: 13,
+          name: '셀트리온',
+          price: 168500,
+          change: -0.5,
+          volume: 28900000,
+        },
+        {
+          id: 14,
+          name: '삼성바이오로직스',
+          price: 1089000,
+          change: 1.8,
+          volume: 35600000,
+        },
+        {
+          id: 15,
+          name: '한미약품',
+          price: 285000,
+          change: 2.2,
+          volume: 15800000,
+        },
+      ],
+    },
+  ],
+};
