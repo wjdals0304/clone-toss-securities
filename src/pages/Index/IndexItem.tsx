@@ -1,23 +1,24 @@
+import { IndexItemType } from './type';
+
 interface IndexItemProps {
-  item: IndexItem;
+  item: IndexItemType;
 }
 
 export default function IndexItem({ item }: IndexItemProps) {
-  const isPositive = item.changeRate >= 0;
+  const { name, price, changeRate } = item;
+  const isPositive = changeRate >= 0;
 
   return (
     <li className="list-none">
       <div className="flex flex-col gap-[0.2rem]">
-        <span className="text-[15px] font-normal text-lightGray">
-          {item.name}
-        </span>
+        <span className="text-[15px] font-normal text-lightGray">{name}</span>
         <div className="flex flex-row gap-2 items-center">
           <span
             className={`text-[15px] font-normal ${
               isPositive ? 'text-stockRedUp' : 'text-stockBlueDown'
             }`}
           >
-            {item.price}
+            {price}
           </span>
           <span
             className={`text-[15px] font-normal ${
@@ -25,7 +26,7 @@ export default function IndexItem({ item }: IndexItemProps) {
             }`}
           >
             {isPositive ? '+' : ''}
-            {item.changeRate}%
+            {changeRate}%
           </span>
         </div>
       </div>
