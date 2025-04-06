@@ -5,12 +5,14 @@ const formatVolume = (volume: number) =>
   Math.floor(volume / 100000000) + '억원';
 const formatChange = (change: number) => `${change > 0 ? '+' : ''}${change}%`;
 
-interface ContentItemProps {
-  item: TransactionItem;
-}
-
-export default function ContentItem({ item }: ContentItemProps) {
-  const { id, rank, name, price, priceChange, volume } = item;
+export default function ContentItem({
+  id,
+  rank,
+  name,
+  price,
+  priceChange,
+  volume,
+}: TransactionItem) {
   return (
     <div
       key={id}

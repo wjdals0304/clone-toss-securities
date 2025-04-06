@@ -15,7 +15,7 @@ export default function Content({ title, items }: ContentProps) {
       </div>
       <div className="flex flex-col gap-3">
         {items.map(item => (
-          <ContentItem key={item.id} item={item} />
+          <ContentItem key={item.id} {...item} />
         ))}
       </div>
     </div>
