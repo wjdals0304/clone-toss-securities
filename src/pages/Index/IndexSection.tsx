@@ -32,7 +32,7 @@ export default function IndexSection() {
           </button>
         ))}
       </div>
-      <IndexList data={data} />
+      <IndexList data={data} selectedIndex={selectedIndex} />
     </div>
   );
 }

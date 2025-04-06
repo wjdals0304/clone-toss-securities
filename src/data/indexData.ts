@@ -47,7 +47,7 @@ export const indexData: IndexItemType[] = [
     type: DataType.INDEX,
   },
   {
-    id: 1,
+    id: 6,
     name: '달러 인덱스',
     price: 101.71,
     change: -0.36,
@@ -55,7 +55,7 @@ export const indexData: IndexItemType[] = [
     type: DataType.INDEX,
   },
   {
-    id: 2,
+    id: 7,
     name: 'USD/KRW',
     price: 1436.6,
     change: -30.4,
