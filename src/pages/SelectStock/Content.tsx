@@ -23,7 +23,7 @@ export default function Content({ theme }: ContentProps) {
             </span>
           ))}
         </div>
-        <div className="flex flex-col gap-[8px]">
+        <div className="flex flex-col gap-3">
           {theme.stocks.map(stock => (
             <StockItem key={stock.id} stock={stock} />
           ))}
