@@ -1,0 +1,18 @@
+.selectStockSlider {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.selectStockSlider :global(.slick-slider) {
+  margin: 0 -50px;
+}
+
+.selectStockSlider :global(.slick-slide) {
+  padding: 0 20px;
+}
+
+.selectStockSlider :global(.slick-track) {
+  display: flex;
+  margin-left: 0;
+  margin-right: 0;
+}

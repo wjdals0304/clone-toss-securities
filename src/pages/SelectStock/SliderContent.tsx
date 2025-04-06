@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { StockTheme } from './type';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import styles from './SliderContent.module.css';
 
 interface SliderContentProps {
   themes: StockTheme[];
@@ -69,7 +70,7 @@ export default function SliderContent({ themes }: SliderContentProps) {
   };
 
   return (
-    <div className="px-[10px] select-stock-slider">
+    <div className={styles.selectStockSlider}>
       <Slider {...settings}>
         {themes.map(theme => (
           <div key={theme.id} className="px-2">
@@ -77,19 +78,6 @@ export default function SliderContent({ themes }: SliderContentProps) {
           </div>
         ))}
       </Slider>
-      <style jsx global>{`
-        .select-stock-slider .slick-slider {
-          margin: 0 -50px;
-        }
-        .select-stock-slider .slick-slide {
-          padding: 0 20px;
-        }
-        .select-stock-slider .slick-track {
-          display: flex;
-          margin-left: 0;
-          margin-right: 0;
-        }
-      `}</style>
     </div>
   );
 }
