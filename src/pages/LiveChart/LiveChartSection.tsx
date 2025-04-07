@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import StockVolumeTable from './StockVolumeTable';
 import StockCountTable from './StockCountTable';
 import DateFilter from './DateFilter';
@@ -11,6 +12,7 @@ import {
 } from '@/constants/stockConstants';
 import LiveChartTab from './LiveChartTab';
 import { useStocks } from '@/hooks/useStocks';
+
 interface LiveChartTab {
   name: string;
   value: StockTabType;
@@ -22,20 +24,37 @@ const LiveChartTabList: LiveChartTab[] = [
 ];
 
 export default function LiveChartSection() {
-  const [selectedTab, setSelectedTab] = useState<StockTabType>(
-    STOCK_TAB.VOLUME,
-  );
+  const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState<StockTabType>(() => {
+    return (router.query.tab as StockTabType) || STOCK_TAB.VOLUME;
+  });
   const [selectedPeriod, setSelectedPeriod] = useState<StockPeriodType>(
     STOCK_PERIOD.REALTIME,
   );
 
+  useEffect(() => {
+    const tabFromUrl = router.query.tab as StockTabType;
+    if (tabFromUrl && Object.values(STOCK_TAB).includes(tabFromUrl)) {
+      setSelectedTab(tabFromUrl);
+    }
+  }, [router.query.tab]);
+
   const handleTabClick = (tab: StockTabType) => {
     setSelectedTab(tab);
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, tab },
+      },
+      undefined,
+      { shallow: true },
+    );
   };
 
   const handlePeriodChange = (period: StockPeriodType) => {
     setSelectedPeriod(period);
   };
+
   const { data = [] } = useStocks(selectedTab, selectedPeriod);
   const volumeFields = ['종목', '현재가', '등락률', '거래대금 많은순'];
   const countFields = ['종목', '현재가', '등락률', '거래량 많은순'];
