@@ -3,7 +3,7 @@ import { VolumeCountStock } from '../../data/stockTypes';
 import StockListVolumeCountItem from './StockListVolumeCountItem';
 
 interface StockCountTableProps {
-  fields: string[];
+  fields: readonly string[];
   data: VolumeCountStock[];
 }
 

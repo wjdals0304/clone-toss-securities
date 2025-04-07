@@ -3,7 +3,7 @@ import { VolumeStock } from '../../data/stockTypes';
 import StockListVolumeItem from './StockListVolumeItem';
 
 interface StockVolumeTableProps {
-  fields: string[];
+  fields: readonly string[];
   data: VolumeStock[];
 }
 

@@ -1,27 +1,27 @@
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import StockVolumeTable from './StockVolumeTable';
-import StockCountTable from './StockCountTable';
-import DateFilter from './DateFilter';
 import {
-  STOCK_TAB,
   STOCK_PERIOD,
-  type StockTabType,
+  STOCK_TAB,
   type StockPeriodType,
+  type StockTabType,
 } from '@/constants/stockConstants';
-import LiveChartTab from './LiveChartTab';
 import { useStocks } from '@/hooks/useStocks';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import StockCountTable from './StockCountTable';
+import StockVolumeTable from './StockVolumeTable';
+import ChartHeader from './ChartHeader';
+import styled from 'styled-components';
 
-interface LiveChartTab {
-  name: string;
-  value: StockTabType;
-}
-
-const LiveChartTabList: LiveChartTab[] = [
-  { name: '토스증권 거래대금', value: STOCK_TAB.VOLUME },
-  { name: '토스증권 거래량', value: STOCK_TAB.VOLUME_COUNT },
-];
+const TABLE_CONFIG = {
+  [STOCK_TAB.VOLUME]: {
+    component: StockVolumeTable,
+    fields: ['종목', '현재가', '등락률', '거래대금 많은순'],
+  },
+  [STOCK_TAB.VOLUME_COUNT]: {
+    component: StockCountTable,
+    fields: ['종목', '현재가', '등락률', '거래량 많은순'],
+  },
+};
 
 export default function LiveChartSection() {
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function LiveChartSection() {
     }
   }, [router.query.tab]);
 
-  const handleTabClick = (tab: StockTabType) => {
+  const handleTabChange = (tab: StockTabType) => {
     setSelectedTab(tab);
     router.push(
       {
@@ -56,70 +56,25 @@ export default function LiveChartSection() {
   };
 
   const { data = [] } = useStocks(selectedTab, selectedPeriod);
-  const volumeFields = ['종목', '현재가', '등락률', '거래대금 많은순'];
-  const countFields = ['종목', '현재가', '등락률', '거래량 많은순'];
+  const currentTable = TABLE_CONFIG[selectedTab];
+  const TableComponent = currentTable.component;
 
   return (
     <LiveChartSectionContainer>
-      <LiveChartHeader>
-        <LiveChartHeaderTitleContainer>
-          <LiveChartHeaderTitle>실시간 차트</LiveChartHeaderTitle>
-        </LiveChartHeaderTitleContainer>
-        <LiveChartTabListContainer>
-          {LiveChartTabList.map(tab => {
-            const { value } = tab;
-            return (
-              <LiveChartTab
-                key={value}
-                tab={tab}
-                selectedTab={selectedTab}
-                handleTabClick={handleTabClick}
-              />
-            );
-          })}
-        </LiveChartTabListContainer>
-        <DateFilter
-          selectedPeriod={selectedPeriod}
-          handlePeriodChange={handlePeriodChange}
-        />
-      </LiveChartHeader>
-      {selectedTab === STOCK_TAB.VOLUME ? (
-        <StockVolumeTable fields={volumeFields} data={data} />
-      ) : (
-        <StockCountTable fields={countFields} data={data} />
-      )}
+      <ChartHeader
+        selectedTab={selectedTab}
+        selectedPeriod={selectedPeriod}
+        onTabChange={handleTabChange}
+        onPeriodChange={handlePeriodChange}
+      />
+      <TableComponent fields={currentTable.fields} data={data} />
     </LiveChartSectionContainer>
   );
 }
-
-const LiveChartHeaderTitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
-const LiveChartHeaderTitle = styled.span`
-  font-size: 20px;
-  font-weight: bold;
-  color: #e4e4e5;
-`;
 
 const LiveChartSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   min-height: 662px;
-`;
-
-const LiveChartHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const LiveChartTabListContainer = styled.div`
-  display: flex;
-  gap: 24px;
-  border-bottom: 1px solid #333d4b;
-  margin-bottom: 16px;
 `;
