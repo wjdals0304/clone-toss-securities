@@ -1,7 +1,7 @@
 import { NewsItem } from '@/types/news';
 import Image from 'next/image';
 import ReactModal from 'react-modal';
-import { useEffect } from 'react';
+import { usePreventScroll } from '@/hooks/usePreventScroll';
 
 interface NewsModalProps {
   item: NewsItem;
@@ -15,17 +15,7 @@ if (typeof window !== 'undefined') {
 
 export default function NewsModal({ item, isOpen, onClose }: NewsModalProps) {
   const { title, time, image, content } = item;
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  usePreventScroll(isOpen);
 
   return (
     <ReactModal
