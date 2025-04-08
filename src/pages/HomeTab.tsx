@@ -29,11 +29,13 @@ interface TabItemProps {
 
 export default function HomeTab() {
   const [selectedTab, setSelectedTab] = useState<TabType>(TABS.ENTIRE);
+  const selectedIndex = TAB_LIST.findIndex(tab => tab.id === selectedTab);
 
   return (
     <HomeTabContainer>
       <HomeTabWrapper>
         <HomeTabGroup>
+          <Slider selectedIndex={selectedIndex} />
           {TAB_LIST.map(tab => (
             <TabItem
               key={tab.id}
@@ -79,12 +81,25 @@ const HomeTabGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
+  max-width: 300px;
   border-radius: 500px;
-  padding: 4px;
+  padding: 5px;
   background-color: #17171c;
   pointer-events: all;
   box-shadow: rgba(2, 9, 19, 0.91) 0px 2px 30px 0px;
+  position: relative;
+  // gap: 3px;
+`;
+
+const Slider = styled.div<{ selectedIndex: number }>`
+  position: absolute;
+  height: 40px;
+  border-radius: 700px;
+  background-color: #2c2d33;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  left: ${({ selectedIndex }) =>
+    `calc(${selectedIndex * (100 / TAB_LIST.length)}% )`};
+  width: ${() => `calc(${100 / TAB_LIST.length}% - 3px)`};
 `;
 
 const HomeTabItem = styled.button<{ selected: boolean }>`
@@ -92,13 +107,17 @@ const HomeTabItem = styled.button<{ selected: boolean }>`
   align-items: center;
   justify-content: center;
   height: 36px;
-  border-radius: 500px;
-  padding: 0 14px;
+  border-radius: 400px;
+  padding: 0 5px;
   color: ${({ selected }) => (selected ? '#FFFFFF' : '#9DA3B3')};
   gap: 6px;
-  background-color: ${({ selected }) => (selected ? '#2C2D33' : 'transparent')};
-  transition: all 0.2s ease;
+  background-color: transparent;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  position: relative;
+  z-index: 1;
+  min-width: 100px;
+  flex: 1;
 
   &:hover {
     color: #ffffff;
