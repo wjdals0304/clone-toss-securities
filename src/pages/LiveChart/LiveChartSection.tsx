@@ -6,11 +6,11 @@ import {
 } from '@/constants/stockConstants';
 import { useStocks } from '@/hooks/useStocks';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import styled from 'styled-components';
+import ChartHeader from './ChartHeader';
 import StockCountTable from './StockCountTable';
 import StockVolumeTable from './StockVolumeTable';
-import ChartHeader from './ChartHeader';
-import styled from 'styled-components';
 
 const TABLE_CONFIG = {
   [STOCK_TAB.VOLUME]: {
@@ -25,22 +25,15 @@ const TABLE_CONFIG = {
 
 export default function LiveChartSection() {
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState<StockTabType>(() => {
-    return (router.query.tab as StockTabType) || STOCK_TAB.VOLUME;
-  });
+  const tabFromUrl = router.query.tab as StockTabType;
+  const selectedTab = Object.values(STOCK_TAB).includes(tabFromUrl)
+    ? tabFromUrl
+    : STOCK_TAB.VOLUME;
   const [selectedPeriod, setSelectedPeriod] = useState<StockPeriodType>(
     STOCK_PERIOD.REALTIME,
   );
 
-  useEffect(() => {
-    const tabFromUrl = router.query.tab as StockTabType;
-    if (tabFromUrl && Object.values(STOCK_TAB).includes(tabFromUrl)) {
-      setSelectedTab(tabFromUrl);
-    }
-  }, [router.query.tab]);
-
   const handleTabChange = (tab: StockTabType) => {
-    setSelectedTab(tab);
     router.push(
       {
         pathname: router.pathname,
