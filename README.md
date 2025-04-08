@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 토스증권 클론 프로젝트
 
-## Getting Started
+토스증권의 UI/UX를 클론 코딩한 프로젝트입니다.
 
-First, run the development server:
+## 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- React
+- TypeScript
+- Next.js
+- Tailwind CSS
+- Styled-components
+- React Query
+
+## 주요 기능
+
+### 1. 홈 탭 네비게이션
+
+- 전체/국내/해외 탭 구현
+- URL 파라미터를 통한 탭 상태 관리
+- 부드러운 탭 전환 애니메이션
+
+### 2. 주식 테마 슬라이더
+
+- react-slick을 활용한 카드 슬라이더 구현
+- 반응형 디자인 지원
+- 좌우 네비게이션 버튼
+- 테마별 주식 정보 표시
+
+### 3. 실시간 차트
+
+- 거래량/거래대금 기준 실시간 데이터 표시
+- 기간별 필터링 기능
+- 실시간 가격 변동 표시
+
+### 4. 커뮤니티 섹션
+
+- 인기 급상승 종목 표시
+- 종목별 게시글 필터링
+- 실시간 인기 게시글 목록
+
+## 프로젝트 구조
+
+```
+src/
+├── pages/           # 페이지 컴포넌트
+│   ├── LiveChart/   # 실시간 차트 관련 컴포넌트
+│   ├── SelectStock/ # 주식 테마 선택 관련 컴포넌트
+│   └── Community/   # 커뮤니티 관련 컴포넌트
+├── hooks/           # 커스텀 훅
+├── constants/       # 상수 정의
+├── types/          # TypeScript 타입 정의
+└── data/           # 목업 데이터
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 주요 컴포넌트
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### HomeTab
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- 메인 네비게이션 탭 컴포넌트
+- URL 기반 상태 관리
+- 반응형 디자인
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### SelectStock
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 주식 테마 카드 슬라이더
+- 테마별 주식 정보 표시
+- 좌우 슬라이드 네비게이션
 
-## Learn More
+### LiveChart
 
-To learn more about Next.js, take a look at the following resources:
+- 실시간 주식 정보 차트
+- 기간별 필터링
+- 거래량/거래대금 정보 표시
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Community
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- 인기 게시글 목록
+- 종목별 필터링
+- 실시간 데이터 업데이트
