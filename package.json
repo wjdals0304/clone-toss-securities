@@ -10,7 +10,7 @@
     "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
-    "@mui/material": "^7.0.1",
+    "@mui/material": "^5.15.11",
     "@tanstack/react-query": "^5.71.3",
     "@types/react-modal": "^3.16.3",
     "@types/react-slick": "^0.23.13",
@@ -28,8 +28,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
