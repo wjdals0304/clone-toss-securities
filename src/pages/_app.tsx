@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app';
 import { StyleSheetManager } from 'styled-components';
-import isPropValid from '@emotion/is-prop-valid';
 import '@/styles/globals.css';
 import '@/styles/reset.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -11,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StyleSheetManager shouldForwardProp={isPropValid}>
+      <StyleSheetManager>
         <Component {...pageProps} />
       </StyleSheetManager>
     </QueryClientProvider>
