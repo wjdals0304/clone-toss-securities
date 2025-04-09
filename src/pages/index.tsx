@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import HomeMain from './HomeMain';
-import HomeAside from './HomeAside';
+import HomeMain from '../feature/Main/HomeMain';
+import HomeAside from '../feature/Main/HomeAside';
 export default function Home() {
   return (
     <HomeContainer>

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { IndexSectionType } from '@/pages/Index/type';
+import { IndexSectionType } from '@/feature/Index/type';
 import { bondData, materialData, indexData } from '@/data/indexData';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
