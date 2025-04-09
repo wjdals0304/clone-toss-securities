@@ -1,8 +1,12 @@
 # 토스증권 클론 프로젝트
 
-토스증권의 UI/UX를 클론 코딩한 프로젝트입니다.
+## 배포 URL
 
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/cd1c9af2-bd65-4b5b-93bf-b07619c2a050" />
+https://clone-toss-securities.vercel.app/
+
+## 프로젝트 소개
+
+이 프로젝트는 토스증권 웹사이트의 클론 버전입니다. 실시간 차트, 주식 정보, 거래 현황 등을 확인할 수 있는 인터페이스를 제공합니다.
 
 ## 기술 스택
 
