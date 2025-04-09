@@ -2,6 +2,8 @@
 
 토스증권의 UI/UX를 클론 코딩한 프로젝트입니다.
 
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/cd1c9af2-bd65-4b5b-93bf-b07619c2a050" />
+
 ## 기술 스택
 
 - React
