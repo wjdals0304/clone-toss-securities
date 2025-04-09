@@ -50,7 +50,7 @@ const StockTd = styled.td`
   text-align: right;
   color: #e4e4e5;
   vertical-align: middle;
-  padding: 8px 16px;
+  padding: 4px;
 
   &:first-child {
     text-align: left;

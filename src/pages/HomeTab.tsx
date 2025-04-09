@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const TABS = {
   ENTIRE: '전체',
@@ -28,20 +30,29 @@ interface TabItemProps {
 }
 
 export default function HomeTab() {
-  const [selectedTab, setSelectedTab] = useState<TabType>(TABS.ENTIRE);
-  const selectedIndex = TAB_LIST.findIndex(tab => tab.id === selectedTab);
+  const router = useRouter();
+  const selectedTab = (router.query.tab as TabType) || TABS.ENTIRE;
+
+  const handleTabClick = (tab: TabType) => {
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, tab },
+    });
+  };
 
   return (
     <HomeTabContainer>
       <HomeTabWrapper>
         <HomeTabGroup>
-          <Slider selectedIndex={selectedIndex} />
+          <Slider
+            selectedIndex={TAB_LIST.findIndex(tab => tab.id === selectedTab)}
+          />
           {TAB_LIST.map(tab => (
             <TabItem
               key={tab.id}
               info={tab}
               isSelected={selectedTab === tab.id}
-              onClick={() => setSelectedTab(tab.id)}
+              onClick={() => handleTabClick(tab.id)}
             />
           ))}
         </HomeTabGroup>
