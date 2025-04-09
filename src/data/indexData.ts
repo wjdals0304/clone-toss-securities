@@ -3,7 +3,7 @@ import {
   MaterialItemType,
   BondItemListType,
   DataType,
-} from '@/pages/Index/type';
+} from '@/feature/Index/type';
 
 export const indexData: IndexItemType[] = [
   {

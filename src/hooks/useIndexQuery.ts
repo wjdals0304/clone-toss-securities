@@ -4,7 +4,7 @@ import {
   IndexItemType,
   BondItemListType,
   MaterialItemType,
-} from '@/pages/Index/type';
+} from '@/feature/Index/type';
 import { useQuery } from '@tanstack/react-query';
 
 const getDataByType = (

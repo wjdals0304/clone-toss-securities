@@ -1,14 +1,14 @@
 import Header from '@/components/Header';
 import styled from 'styled-components';
-import LiveChartSection from './LiveChart/LiveChartSection';
+import LiveChartSection from '../LiveChart/LiveChartSection';
 import HomeTab from './HomeTab';
-import CommunitySection from './Community/CommunitySection';
-import Category from './Category/Category';
-import EtfSection from './Etf/EtfSection';
-import TransactionStatusSection from './TransactionStatus/TransactionStatusSection';
-import SelectStockSection from './SelectStock/SelectStockSection';
-import IndexSection from './Index/IndexSection';
-import NewsSection from './NewsSection/NewsSection';
+import CommunitySection from '../Community/CommunitySection';
+import Category from '../Category/Category';
+import EtfSection from '../Etf/EtfSection';
+import TransactionStatusSection from '../TransactionStatus/TransactionStatusSection';
+import SelectStockSection from '../SelectStock/SelectStockSection';
+import IndexSection from '../Index/IndexSection';
+import NewsSection from '../NewsSection/NewsSection';
 
 export default function HomeMain() {
   return (

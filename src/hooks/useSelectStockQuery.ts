@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { SelectStockResponse } from '@/pages/SelectStock/type';
+import { SelectStockResponse } from '@/feature/SelectStock/type';
 
 const fetchSelectStockData = async (): Promise<SelectStockResponse> => {
   const response = await fetch('/api/selectStock');
