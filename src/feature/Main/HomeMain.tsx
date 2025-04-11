@@ -64,9 +64,7 @@ const HomeMainTag = styled.main`
 const HomeMainDiv = styled.div`
   margin: 0 auto;
   padding: 0 40px;
-  width: 100%;
-  min-width: 1100px;
-  max-width: 1280px;
+  width: 1280px;
 `;
 
 const HomeContentWrapper = styled.div`
@@ -79,7 +77,7 @@ const HomeLiveChartDiv = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  width: 870px;
 `;
 
 const HomeSeparatorDiv = styled.div`

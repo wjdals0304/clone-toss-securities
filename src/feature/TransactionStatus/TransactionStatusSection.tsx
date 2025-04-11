@@ -67,14 +67,6 @@ export default function TransactionStatusSection() {
     beforeChange: (_: number, newIndex: number) => {
       setCurrentSlide(newIndex);
     },
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
   };
 
   return (

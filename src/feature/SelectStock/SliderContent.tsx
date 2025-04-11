@@ -16,12 +16,14 @@ function NextArrow(props: any) {
   if (currentSlide === slideCount - 2) return null;
 
   return (
-    <button
-      className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
-      onClick={onClick}
-    >
-      <span className="text-white text-xl">›</span>
-    </button>
+    <div className="absolute right-0 top-0 h-full w-[150px] bg-[linear-gradient(270deg,#17171c_9%,transparent_100%)]">
+      <button
+        className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
+        onClick={onClick}
+      >
+        <span className="text-white text-xl">›</span>
+      </button>
+    </div>
   );
 }
 
@@ -31,12 +33,14 @@ function PrevArrow(props: any) {
   if (currentSlide === 0) return null;
 
   return (
-    <button
-      className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
-      onClick={onClick}
-    >
-      <span className="text-white text-xl">‹</span>
-    </button>
+    <div className="absolute left-0 top-0 h-full w-[150px] bg-[linear-gradient(90deg,#17171c_9%,transparent_100%)]">
+      <button
+        className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-10 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-dark hover:bg-darkHover border border-solid border-borderGray"
+        onClick={onClick}
+      >
+        <span className="text-white text-xl">‹</span>
+      </button>
+    </div>
   );
 }
 
@@ -59,14 +63,6 @@ export default function SliderContent({ themes }: SliderContentProps) {
     beforeChange: (_: number, newIndex: number) => {
       setCurrentSlide(newIndex);
     },
-    responsive: [
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
   };
 
   return (
