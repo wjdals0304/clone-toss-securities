@@ -25,19 +25,18 @@ const TABLE_CONFIG = {
 
 export default function LiveChartSection() {
   const router = useRouter();
-  const tabFromUrl = router.query.tab as StockTabType;
-  const selectedTab = Object.values(STOCK_TAB).includes(tabFromUrl)
-    ? tabFromUrl
+  const activeTab = (router.query.liveChart ?? STOCK_TAB.VOLUME) as StockTabType;
+  const selectedTab = Object.values(STOCK_TAB).includes(activeTab)
+    ? activeTab
     : STOCK_TAB.VOLUME;
   const [selectedPeriod, setSelectedPeriod] = useState<StockPeriodType>(
     STOCK_PERIOD.REALTIME,
   );
 
-  const handleTabChange = (tab: StockTabType) => {
+  const handleTabChange = (value: StockTabType) => {
     router.push(
       {
-        pathname: router.pathname,
-        query: { ...router.query, tab },
+        query: { ...router.query, liveChart: value },
       },
       undefined,
       { shallow: true },

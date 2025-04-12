@@ -97,6 +97,9 @@ const HomeAsideDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: sticky;
+  top: 0;
+  height: fit-content;
 `;
 
 const HomeAsideHeightDiv = styled.div`
