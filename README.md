@@ -44,6 +44,20 @@ https://clone-toss-securities.vercel.app/
 - 종목별 게시글 필터링
 - 실시간 인기 게시글 목록
 
+## 트러블슈팅
+
+### 1. HomeTab 슬라이더 UI
+
+- [상세 문서](docs/troubleshooting/components/HomeTabSlider.md)
+- 문제 상황:
+  - SSR 환경에서 ref 접근 시 null 반환
+  - 슬라이더 위치 계산 부정확
+  - 반응형 환경에서 위치 오차 발생
+- 해결 방법:
+  - useEffect를 활용한 컴포넌트 마운트 후 접근
+  - getBoundingClientRect()를 활용한 정확한 위치 계산
+  - 부모 요소 기준 상대 위치 계산 로직 구현
+
 ## 프로젝트 구조
 
 ```
