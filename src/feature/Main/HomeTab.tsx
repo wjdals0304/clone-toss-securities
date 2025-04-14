@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { forwardRef, useRef, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const TABS = {
   ENTIRE: '전체',
@@ -31,7 +30,25 @@ interface TabItemProps {
 
 export default function HomeTab() {
   const router = useRouter();
+  const ref = useRef<HTMLDivElement>(null);
+  const [sliderProps, setSliderProps] = useState({ width: 0, left: 0 });
   const selectedTab = (router.query.tab as TabType) || TABS.ENTIRE;
+  const selectedIndex = TAB_LIST.findIndex(tab => tab.id === selectedTab);
+
+  useEffect(() => {
+    if (ref.current) {
+      const reactSelectedTab = ref.current.children[selectedIndex];
+      const selectedTabWidth = reactSelectedTab?.clientWidth;
+      const selectedTabLeft =
+        reactSelectedTab?.getBoundingClientRect().left ?? 0;
+      const parentClientLeft = ref.current.getBoundingClientRect().left ?? 0;
+
+      setSliderProps({
+        width: selectedTabWidth ?? 0,
+        left: selectedTabLeft - parentClientLeft,
+      });
+    }
+  }, [selectedIndex, router.query.tab]);
 
   const handleTabClick = (tab: TabType) => {
     router.push({
@@ -43,10 +60,7 @@ export default function HomeTab() {
   return (
     <HomeTabContainer>
       <HomeTabWrapper>
-        <HomeTabGroup>
-          <Slider
-            selectedIndex={TAB_LIST.findIndex(tab => tab.id === selectedTab)}
-          />
+        <HomeTabGroup ref={ref}>
           {TAB_LIST.map(tab => (
             <TabItem
               key={tab.id}
@@ -55,6 +69,7 @@ export default function HomeTab() {
               onClick={() => handleTabClick(tab.id)}
             />
           ))}
+          <Slider width={sliderProps.width} left={sliderProps.left} />
         </HomeTabGroup>
       </HomeTabWrapper>
     </HomeTabContainer>
@@ -77,40 +92,36 @@ const HomeTabContainer = styled.div`
   position: sticky;
   top: 64px;
   width: 100%;
-  margin-top: 4px;
   z-index: 100;
   pointer-events: none;
+  display: flex;
+  justify-content: center;
 `;
 
 const HomeTabWrapper = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
 const HomeTabGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 300px;
   border-radius: 500px;
-  padding: 5px;
   background-color: #17171c;
   pointer-events: all;
   box-shadow: rgba(2, 9, 19, 0.91) 0px 2px 30px 0px;
-  position: relative;
-  // gap: 3px;
 `;
 
-const Slider = styled.div<{ selectedIndex: number }>`
+const Slider = styled.div<{ width: number; left: number }>`
   position: absolute;
-  height: 40px;
+  height: 36px;
   border-radius: 700px;
   background-color: #2c2d33;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  left: ${({ selectedIndex }) =>
-    `calc(${selectedIndex * (100 / TAB_LIST.length)}% )`};
-  width: ${() => `calc(${100 / TAB_LIST.length}% - 3px)`};
+  left: ${({ left }) => `${left}px`};
+  width: ${({ width }) => `${width}px`};
 `;
 
 const HomeTabItem = styled.button<{ selected: boolean }>`
@@ -119,7 +130,7 @@ const HomeTabItem = styled.button<{ selected: boolean }>`
   justify-content: center;
   height: 36px;
   border-radius: 400px;
-  padding: 0 5px;
+  padding: 0 14px;
   color: ${({ selected }) => (selected ? '#FFFFFF' : '#9DA3B3')};
   gap: 6px;
   background-color: transparent;
@@ -127,8 +138,6 @@ const HomeTabItem = styled.button<{ selected: boolean }>`
   cursor: pointer;
   position: relative;
   z-index: 1;
-  min-width: 100px;
-  flex: 1;
 
   &:hover {
     color: #ffffff;
